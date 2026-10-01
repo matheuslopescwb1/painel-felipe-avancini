@@ -1,0 +1,330 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow">
+<meta name="description" content="Leitura dos 16 reels de setembro do @heynego e o plano para levar o público à comunidade e ao curso.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Painel Felipe Avancini">
+<meta property="og:description" content="Leitura dos 16 reels de setembro do @heynego e o plano para levar o público à comunidade e ao curso.">
+<meta name="theme-color" content="#0f4c5c">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230f4c5c'/%3E%3Cpath d='M8 23V14h4v9zm6 0V9h4v14zm6 0v-6h4v6z' fill='%23fff'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<style>html{-webkit-text-size-adjust:100%}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>Painel Felipe Avancini</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@75..100,500..800&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<style>
+/* Layout: painel de leitura em coluna única, resumo antes do detalhe; duas metades: o que já foi postado / o que vamos fazer */
+:root{
+  --page:#f4f6f5; --surface:#fcfcfb; --ink:#0b0b0b; --ink2:#52514e; --muted:#898781;
+  --grid:#e1e0d9; --axis:#c3c2b7; --line:rgba(11,11,11,.10);
+  --s1:#2a78d6; --s2:#eb6834; --s3:#1baf7a; --track:#e6e8e6;
+  --accent:#0f4c5c; --accent-ink:#ffffff; --good:#006300; --warn-bg:#fff3d6; --warn-ink:#5c4300;
+  --display:"Archivo","Arial Narrow",system-ui,sans-serif;
+  --body:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --page:#0d0d0d; --surface:#1a1a19; --ink:#ffffff; --ink2:#c3c2b7; --muted:#898781;
+  --grid:#2c2c2a; --axis:#383835; --line:rgba(255,255,255,.10);
+  --s1:#3987e5; --s2:#d95926; --s3:#199e70; --track:#2c2c2a;
+  --accent:#7fc4d4; --accent-ink:#06222a; --good:#0ca30c; --warn-bg:#3a2e0c; --warn-ink:#fbe2a0; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --page:#0d0d0d; --surface:#1a1a19; --ink:#ffffff; --ink2:#c3c2b7; --muted:#898781;
+  --grid:#2c2c2a; --axis:#383835; --line:rgba(255,255,255,.10);
+  --s1:#3987e5; --s2:#d95926; --s3:#199e70; --track:#2c2c2a;
+  --accent:#7fc4d4; --accent-ink:#06222a; --good:#0ca30c; --warn-bg:#3a2e0c; --warn-ink:#fbe2a0; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--page);color:var(--ink);font-family:var(--body);font-size:15px;line-height:1.5;padding-inline:16px;padding-block:28px 64px}
+.wrap{max-width:1040px;margin:0 auto;display:flex;flex-direction:column;gap:20px}
+h1,h2,h3{font-family:var(--display);font-stretch:85%;text-wrap:balance;margin:0;line-height:1.1}
+h1{font-size:clamp(30px,5vw,46px);font-weight:800;letter-spacing:-.01em}
+h2{font-size:clamp(22px,3.2vw,28px);font-weight:700}
+h3{font-size:17px;font-weight:700;font-stretch:92%}
+p{margin:0;max-width:68ch}
+.sub{color:var(--ink2)}
+.small{font-size:13px;color:var(--ink2)}
+.eyebrow{font-size:12px;letter-spacing:.09em;text-transform:uppercase;color:var(--muted);font-weight:600}
+header{display:flex;flex-direction:column;gap:8px;padding-bottom:4px}
+.part{margin-top:20px;padding-top:20px;border-top:2px solid var(--ink);display:flex;flex-direction:column;gap:6px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:20px;display:flex;flex-direction:column;gap:14px;min-width:0}
+.tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px}
+.tile{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:14px 16px;display:flex;flex-direction:column;gap:2px}
+.tile b{font-family:var(--display);font-size:30px;font-weight:700;line-height:1.1}
+.tile span{font-size:13px;color:var(--ink2)}
+.two{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px}
+.legend{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:13px;color:var(--ink2)}
+.legend i{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:6px;vertical-align:-1px}
+.c1{background:var(--s1)}.c2{background:var(--s2)}.c3{background:var(--s3)}.cn{background:var(--track)}
+/* linhas de barras */
+.r{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1.4fr) minmax(0,1fr);gap:2px 16px;align-items:center;padding:5px 4px;border-radius:4px}
+.r:hover,.r:focus-visible{background:var(--track);outline:none}
+.r:focus-visible{box-shadow:0 0 0 2px var(--accent)}
+.r.head{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;font-weight:600;border-bottom:1px solid var(--grid);border-radius:0}
+.r.head:hover{background:none}
+.lab{font-size:13.5px;min-width:0}
+.cell{display:flex;align-items:center;gap:8px;min-width:0}
+.trk{flex:1;min-width:0;height:14px;display:flex}
+.bar{height:14px;border-radius:0 4px 4px 0;min-width:2px}
+.v{font-size:12.5px;color:var(--ink2);font-variant-numeric:tabular-nums;white-space:nowrap;min-width:46px}
+.r2{grid-template-columns:minmax(0,1.1fr) minmax(0,2fr)}
+@media (max-width:640px){.r{grid-template-columns:1fr 1fr}.r .lab{grid-column:1/-1}.r.head .lab{display:none}.r2{grid-template-columns:1fr}}
+.stack{display:flex;gap:2px;height:22px}
+.stack div{border-radius:3px;min-width:3px}
+.share{display:flex;flex-direction:column;gap:5px}
+.share .cap{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;font-size:13px}
+.share .cap span{color:var(--ink2);font-variant-numeric:tabular-nums}
+.flow{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;align-items:stretch}
+.step{border:1px solid var(--line);border-radius:6px;padding:12px 14px;background:var(--page)}
+.step b{font-family:var(--display);font-size:24px;font-weight:700;display:block;line-height:1.15}
+.step small{display:block;color:var(--ink2);font-size:12.5px;margin-top:2px}
+.note{background:var(--warn-bg);color:var(--warn-ink);border-radius:6px;padding:12px 14px;font-size:14px}
+.note b{font-weight:600}
+ul{margin:0;padding-left:18px;display:flex;flex-direction:column;gap:6px;max-width:70ch}
+#tip{position:fixed;z-index:9;pointer-events:none;background:var(--ink);color:var(--surface);font-size:12.5px;line-height:1.45;padding:8px 10px;border-radius:5px;max-width:260px}
+/* funil */
+.funnel{display:flex;flex-direction:column;gap:8px;align-items:center}
+.stage{border:1px solid var(--line);background:var(--page);border-radius:6px;padding:12px 16px;display:grid;grid-template-columns:minmax(0,150px) minmax(0,1fr);gap:4px 16px}
+.stage h3{font-size:16px}
+.stage .pct{font-size:12.5px;color:var(--muted);font-weight:600}
+.stage.final{background:var(--accent);color:var(--accent-ink);border-color:transparent}
+.stage.final .pct,.stage.final .small{color:var(--accent-ink);opacity:.85}
+@media (max-width:640px){.stage{grid-template-columns:1fr;width:100%!important}}
+table{border-collapse:collapse;width:100%;font-size:13px}
+th,td{padding:7px 10px;text-align:right;border-bottom:1px solid var(--grid);white-space:nowrap;font-variant-numeric:tabular-nums}
+th{color:var(--muted);font-weight:600;font-size:12px;text-transform:uppercase;letter-spacing:.05em}
+th:first-child,td:first-child{text-align:left;white-space:normal;min-width:190px}
+.scroll{overflow-x:auto}
+details summary{cursor:pointer;font-weight:600}
+details summary:focus-visible,input:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.plan td,.plan th{text-align:left;white-space:normal;vertical-align:top}
+.calc{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}
+.calc label{display:flex;flex-direction:column;gap:6px;font-size:13.5px}
+.calc input[type=range]{width:100%;accent-color:var(--accent)}
+.calc output{font-family:var(--display);font-size:22px;font-weight:700}
+.result{display:flex;flex-wrap:wrap;gap:12px 32px;padding-top:12px;border-top:1px solid var(--grid)}
+.result b{font-family:var(--display);font-size:30px;display:block;line-height:1.1}
+.pill{display:inline-block;font-size:12px;font-weight:600;padding:2px 8px;border-radius:99px;border:1px solid var(--axis);color:var(--ink2)}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <span class="eyebrow">@heynego · leitura de 1 de outubro de 2026</span>
+  <h1>Painel Felipe Avancini</h1>
+  <p class="sub">O que os 16 reels de setembro mostraram e como levar esse público até um grupo fechado e, de lá, ao curso para quem mora ou quer morar fora e ganhar com conteúdo.</p>
+</header>
+
+<div class="tiles">
+  <div class="tile"><b>85,9 mil</b><span>seguidores no Instagram</span></div>
+  <div class="tile"><b>143 mil</b><span>views nos 16 reels de setembro</span></div>
+  <div class="tile"><b>7,7 mil</b><span>views por reel (mediana)</span></div>
+  <div class="tile"><b>198</b><span>seguidores ganhos nos 16 reels</span></div>
+  <div class="tile"><b>16 a 26 s</b><span>assistidos em vídeos de mais de 1 minuto</span></div>
+</div>
+
+<div class="part"><span class="eyebrow">Parte 1</span><h2>O que já foi postado</h2></div>
+
+<section class="card">
+  <h3>Dinheiro concreto traz o seguidor; o resto traz view</h3>
+  <p class="small">Cada linha é um reel de setembro. Passe o mouse ou toque para ver os detalhes.</p>
+  <div class="legend"><span><i class="c1"></i>Dinheiro concreto</span><span><i class="c2"></i>Vida real e cultura</span><span><i class="c3"></i>Tese aberta ou opinião</span></div>
+  <div id="reels"></div>
+</section>
+
+<div class="two">
+  <section class="card">
+    <h3>4 vídeos de dinheiro renderam 75% dos seguidores</h3>
+    <div class="legend"><span><i class="c1"></i>Dinheiro</span><span><i class="c2"></i>Vida real</span><span><i class="c3"></i>Tese aberta</span></div>
+    <div id="shares" style="display:flex;flex-direction:column;gap:14px"></div>
+    <p class="small">Média por vídeo: dinheiro 13,1 mil views e 37 seguidores; vida real 9,8 mil e 5; tese aberta 5,9 mil e 4.</p>
+  </section>
+  <section class="card">
+    <h3>De cada 100 visitas ao perfil, 13 viram seguidor</h3>
+    <div class="flow">
+      <div class="step"><b>143.022</b>views<small>16 reels</small></div>
+      <div class="step"><b>1.509</b>visitas ao perfil<small>1,1% das views</small></div>
+      <div class="step"><b>198</b>seguidores novos<small>13% das visitas</small></div>
+    </div>
+    <p class="small">Nos dois vídeos de salário a conversão sobe para 21% (620 visitas, 130 seguidores). O perfil hoje não ajuda: a bio diz só "bom dia" e os fixados são fotos de premiação.</p>
+  </section>
+</div>
+
+<section class="card">
+  <h3>O público assiste um terço do vídeo, ou menos</h3>
+  <p class="small">A faixa inteira é a duração do vídeo; a parte colorida é o tempo médio assistido.</p>
+  <div class="legend"><span><i class="c1"></i>Tempo médio assistido</span><span><i class="cn"></i>Resto do vídeo</span></div>
+  <div id="dur"></div>
+  <p class="small">O reel de 30 segundos teve a menor taxa de pulos (35,4%) e o maior compartilhamento (1,4%). "Quem trabalha mais?" ficou de fora por falta do print de duração.</p>
+</section>
+
+<div class="two">
+  <section class="card">
+    <h3>O alcance caiu de 10 a 30 vezes</h3>
+    <div class="legend"><span><i class="c1"></i>Vídeos antigos do perfil</span><span><i class="c2"></i>Setembro de 2026</span></div>
+    <div id="old"></div>
+    <p class="small">Os antigos tiveram mais tempo para acumular view, mas a diferença não se explica só por isso. Eles são gravados no lugar, com preço e objeto na mão.</p>
+  </section>
+  <section class="card">
+    <h3>Quem assiste é adulto em idade de trabalhar</h3>
+    <div id="age"></div>
+    <p class="small">Faixas do reel "Na Itália você descobre"; os outros variam poucos pontos. Em média 56% de quem assiste ainda não segue. O italiano lidera as traduções automáticas, sinal de público que já mora na Itália. Faltam os prints de país e gênero.</p>
+  </section>
+</div>
+
+<section class="card">
+  <details>
+    <summary>Tabela com os 16 reels</summary>
+    <div class="scroll" style="margin-top:12px"><table id="tbl"></table></div>
+  </details>
+</section>
+
+<div class="part"><span class="eyebrow">Parte 2</span><h2>O que vamos fazer daqui para frente</h2>
+<p class="sub">Um caminho só: o vídeo traz gente nova, a história cria confiança, o convite leva ao grupo fechado e o grupo prepara a venda do curso.</p></div>
+
+<section class="card">
+  <h3>O funil de conteúdo</h3>
+  <div class="funnel">
+    <div class="stage" style="width:100%"><div><h3>1. Alcance</h3><span class="pct">6 de cada 10 posts</span></div><div><p>Dinheiro concreto e vida real, em 30 a 45 segundos, abrindo direto no número.</p><p class="small">Quanto custa viver na Suíça, quanto sobra do salário, "Na Suíça você descobre". Mede: views, não seguidores, seguidores novos.</p></div></div>
+    <div class="stage" style="width:94%"><div><h3>2. Conexão</h3><span class="pct">3 de cada 10 posts</span></div><div><p>A história dele e os bastidores de quem ganha com conteúdo morando fora.</p><p class="small">O primeiro vídeo que bateu 1 milhão gravado num iPhone 8 Plus, os 4 meses na igreja em Torino, como fechou a primeira parceria, os eventos de Milão. Mede: salvamentos, compartilhamentos, visitas ao perfil.</p></div></div>
+    <div class="stage" style="width:88%"><div><h3>3. Convite</h3><span class="pct">1 de cada 10 posts + stories</span></div><div><p>Chamada direta para a comunidade no WhatsApp.</p><p class="small">"Comenta COMUNIDADE que eu te mando o link." Link na bio, destaque fixo e lembrete nos stories. Mede: entradas na comunidade por semana.</p></div></div>
+    <div class="stage" style="width:82%"><div><h3>4. Comunidade no WhatsApp</h3><span class="pct">4 semanas de aquecimento</span></div><div><p>Onde a pessoa sai do algoritmo, recebe direto do Felipe e conversa com quem está no mesmo caminho.</p><p class="small">Os avisos da comunidade levam o conteúdo do Felipe a todos; os grupos são onde as pessoas respondem e se conhecem, abertos um a um conforme enchem. Mede: entradas, respostas à pesquisa, conversa nos grupos, presença na aula, lista de espera.</p></div></div>
+    <div class="stage final" style="width:76%"><div><h3>5. Curso e mentoria</h3><span class="pct">turma fundadora</span></div><div><p>Criar conteúdo morando fora, entender de marketing e achar empresas parceiras.</p><p class="small">Abre primeiro para o grupo, com vagas limitadas.</p></div></div>
+  </div>
+</section>
+
+<section class="card">
+  <div class="note"><b>O ponto que precisa ser testado antes de construir o curso.</b> O conteúdo que mais cresce atrai quem quer saber de salário e custo de vida. O curso é para quem quer criar conteúdo e fechar parcerias. Não há dado ainda de quantos desse público querem isso. A ponte é a etapa 2: mostrar que o próprio Felipe ganha com conteúdo morando fora. A pesquisa de entrada da comunidade responde a dúvida em poucos dias.</div>
+</section>
+
+<div class="two">
+  <section class="card">
+    <h3>O que postar em cada etapa</h3>
+    <div class="scroll"><table class="plan">
+      <tr><th>Etapa</th><th>Temas</th></tr>
+      <tr><td><b>Alcance</b></td><td>Quanto custa viver na Suíça por mês · Quanto sobra do salário · Meu primeiro salário na Itália: 1.100 euros · Carrinho de mercado na Suíça · Na Suíça você descobre</td></tr>
+      <tr><td><b>Conexão</b></td><td>Meu primeiro vídeo na Itália bateu 1 milhão · Lavava carro na Land Rover e era reconhecido no shopping · Dormi 4 meses na sala de uma igreja · Como fechei minha primeira parceria · O que os eventos de Milão me abriram</td></tr>
+      <tr><td><b>Convite</b></td><td>Vou abrir um grupo fechado para quem mora fora, ou quer morar, e quer ganhar com conteúdo · O que vou mostrar lá que não mostro aqui</td></tr>
+    </table></div>
+    <p class="small">Tudo com número real dele. Os valores de monetização e parceria precisam ser confirmados com o Felipe antes de gravar.</p>
+  </section>
+  <section class="card">
+    <h3>Aquecimento dentro do grupo</h3>
+    <div class="scroll"><table class="plan">
+      <tr><th>Semana</th><th>O que acontece</th></tr>
+      <tr><td><b>1</b></td><td>Boas-vindas em vídeo nos avisos e pesquisa de 3 perguntas nos grupos: onde mora, se já cria conteúdo, qual a maior trava.</td></tr>
+      <tr><td><b>2</b></td><td>Bastidores com número: como grava, quanto as plataformas pagam, como uma parceria chega.</td></tr>
+      <tr><td><b>3</b></td><td>Aula ao vivo só para a comunidade, com o tema mais pedido na pesquisa. O link sai nos avisos.</td></tr>
+      <tr><td><b>4</b></td><td>Lista de espera em um grupo próprio dentro da comunidade e abertura da turma fundadora.</td></tr>
+    </table></div>
+  </section>
+</div>
+
+<section class="card">
+  <h3>Ordem das próximas semanas</h3>
+  <div class="scroll"><table class="plan">
+    <tr><th>Quando</th><th>Entrega</th><th>Sinal de que funcionou</th></tr>
+    <tr><td><b>Semanas 1 e 2</b></td><td>Teste focado: 1 reel por dia, 30 a 45 segundos, tema de dinheiro. Trocar bio e fixados.</td><td>10 mil views e 10 seguidores por vídeo; pulos abaixo de 38%</td></tr>
+    <tr><td><b>Semanas 3 e 4</b></td><td>Entram os vídeos de conexão. Comunidade do WhatsApp criada com o primeiro grupo, link na bio, primeiro convite.</td><td>Primeiras entradas na comunidade; meta proposta de 300 pessoas em 30 dias</td></tr>
+    <tr><td><b>Semanas 5 a 8</b></td><td>Aquecimento de 4 semanas na comunidade, pesquisa e aula ao vivo. Novos grupos abrem conforme os anteriores enchem.</td><td>Mais da metade responde a pesquisa; parte relevante diz que quer criar conteúdo</td></tr>
+    <tr><td><b>Depois</b></td><td>Abertura da turma fundadora só para a comunidade.</td><td>Primeiras vendas e depoimentos para a turma seguinte</td></tr>
+  </table></div>
+  <p class="small">A meta de 300 pessoas é ponto de partida, a ajustar depois da primeira semana de convite.</p>
+</section>
+
+<section class="card">
+  <h3>Simulador da turma fundadora</h3>
+  <p class="small">O preço inicial definido é R$ 497. O tamanho da comunidade e a taxa de compra são hipóteses, não previsão: nenhum dos dois foi medido ainda.</p>
+  <div class="calc">
+    <label for="g">Pessoas na comunidade<output id="go">300</output><input id="g" type="range" min="50" max="3000" step="50" value="300"></label>
+    <label for="c">Compram o curso <output id="co">5%</output><input id="c" type="range" min="1" max="15" step="1" value="5"></label>
+    <label for="p">Preço <output id="po">R$ 497</output><input id="p" type="range" min="97" max="1997" step="100" value="497"></label>
+  </div>
+  <div class="result"><div><b id="ra">15</b><span class="small">alunos</span></div><div><b id="rr">R$ 7.455</b><span class="small">receita da turma</span></div></div>
+</section>
+
+<section class="card">
+  <h3>Decisões em aberto</h3>
+  <ul>
+    <li><span class="pill">Felipe</span> Topa abrir os números reais de monetização e de salário na obra?</li>
+    <li><span class="pill">Decidido</span> Comunidade no WhatsApp, com grupos abertos conforme as pessoas entram.</li>
+    <li><span class="pill">Decidido</span> Matheus e Felipe respondem nos grupos. Regras: sem spam, sem conteúdo proibido e conversa só sobre o tema da comunidade.</li>
+    <li><span class="pill">Decidido</span> Grupos divididos por ordem de chegada.</li>
+    <li><span class="pill">Decidido</span> Preço inicial do curso: R$ 497.</li>
+    <li><span class="pill">Mais para frente</span> Formato e nome do curso. O foco agora é audiência, conteúdo e fazer o funil rodar até a primeira venda.</li>
+    <li><span class="pill">Dados</span> Prints de país e gênero do público, para saber quanto está no Brasil e quanto já mora fora.</li>
+    <li><span class="pill">Marca</span> Escolher o slogan e trocar a bio.</li>
+  </ul>
+</section>
+</div>
+<div id="tip" hidden></div>
+
+<script>
+const R=[
+["Quanto ganha um brasileiro na Suíça?",1,"4/set",15131,73,26,38.0,76,357,68],
+["Quanto ganha um brasileiro na Itália?",1,"4/set",14230,75,23,40.2,54,263,54],
+["O erro que me fez perder dinheiro",1,"5/set",14035,76,23,43.8,15,200,42],
+["Na Itália você descobre (menos de 24 h)",2,"30/set",11977,30,13,35.4,8,65,43],
+["O maior choque cultural que tive na Itália",2,"14/set",11071,64,17,44.8,6,50,13],
+["Comida brasileira x comida italiana",2,"8/set",10545,73,22,37.3,4,57,22],
+["Aonde sobra mais dinheiro no fim do mês?",1,"3/set",9151,81,24,39.4,4,85,20],
+["O que eu imaginava da Europa x o que encontrei",2,"3/set",8049,76,22,41.4,1,92,18],
+["Turista na Europa x morador na Europa",2,"3/set",7382,74,20,40.3,5,64,24],
+["Quem cresce mais rápido na vida?",3,"5/set",7272,94,18,40.9,3,59,23],
+["Quem tem mais qualidade de vida?",3,"25/set",6662,79,16,45.1,2,56,30],
+["O que eu faria diferente antes de vir",3,"26/set",6347,67,17,41.7,2,40,17],
+["Morar fora vale a pena? (horizontal)",3,"14/set",5646,20,9,48.2,3,23,21],
+["A maior mentira que contam sobre morar fora",3,"4/set",5382,87,16,42.1,6,34,13],
+["O que ninguém te conta sobre imigração",3,"9/set",5202,86,16,44.9,7,34,17],
+["Quem trabalha mais? Brasileiro ou europeu?",3,"set",4940,null,19,null,2,30,3]
+];
+const CAT={1:"Dinheiro concreto",2:"Vida real e cultura",3:"Tese aberta ou opinião"};
+const n=x=>x.toLocaleString("pt-BR");
+const mmss=s=>Math.floor(s/60)+":"+String(s%60).padStart(2,"0");
+const $=id=>document.getElementById(id);
+const tipOf=r=>`<b>${r[0]}</b><br>${CAT[r[1]]} · ${r[2]}<br>${n(r[3])} views · ${r[7]} seguidores<br>${r[8]} visitas ao perfil · ${r[9]} salvamentos`+(r[4]?`<br>${mmss(r[4])} de duração · ${r[5]} s assistidos`:"")+(r[6]?`<br>${n(r[6])}% de pulos`:"");
+
+$("reels").innerHTML=`<div class="r head"><span class="lab">Reel</span><span>Views</span><span>Seguidores ganhos</span></div>`+
+R.map((r,i)=>`<div class="r" tabindex="0" data-i="${i}"><span class="lab">${r[0]}</span>
+<span class="cell"><span class="trk"><span class="bar c${r[1]}" style="width:${r[3]/16000*100}%"></span></span><span class="v">${n(r[3])}</span></span>
+<span class="cell"><span class="trk"><span class="bar c${r[1]}" style="width:${r[7]/80*100}%"></span></span><span class="v">${r[7]}</span></span></div>`).join("");
+
+const SH=[["Vídeos publicados",[25,31.25,43.75],["4","5","7"]],["Views",[36.7,34.3,29.0],["52,5 mil","49,0 mil","41,5 mil"]],["Seguidores ganhos",[75.3,12.1,12.6],["149","24","25"]]];
+$("shares").innerHTML=SH.map(s=>`<div class="share"><div class="cap"><b>${s[0]}</b><span>${s[1].map((p,i)=>Math.round(p)+"% ("+s[2][i]+")").join(" · ")}</span></div>
+<div class="stack">${s[1].map((p,i)=>`<div class="c${i+1}" style="width:${p}%"></div>`).join("")}</div></div>`).join("");
+
+$("dur").innerHTML=R.filter(r=>r[4]).sort((a,b)=>b[5]/b[4]-a[5]/a[4]).map(r=>`<div class="r r2" tabindex="0" data-i="${R.indexOf(r)}"><span class="lab">${r[0]}</span>
+<span class="cell"><span class="trk"><span style="display:flex;width:${r[4]/94*100}%;background:var(--track);border-radius:0 4px 4px 0"><span class="bar c1" style="width:${r[5]/r[4]*100}%"></span></span></span><span class="v" style="min-width:118px">${r[5]} s de ${mmss(r[4])} (${Math.round(r[5]/r[4]*100)}%)</span></span></div>`).join("");
+
+const OLD=[["Comparando valores de produtos, com os pais",448,1],["Esse valor você faz em 1 dia na Suíça",393,1],["Brasil vs Itália: ovos de Páscoa no mercado",274,1],["Mc Donalds é coisa de pobre na Europa",155,1],["Fui parar no hospital na Itália",148,1],["Quanto custa mercado na Itália",93.4,1],["Erros que cometi quando imigrei",51.4,1],["Setembro: melhor reel (salário na Suíça)",15.1,2],["Setembro: reel mediano",7.7,2]];
+$("old").innerHTML=OLD.map(o=>`<div class="r r2" tabindex="0" data-t="<b>${o[0]}</b><br>${n(o[1])} mil views"><span class="lab">${o[0]}</span>
+<span class="cell"><span class="trk"><span class="bar c${o[2]}" style="width:${o[1]/450*100}%"></span></span><span class="v" style="min-width:62px">${n(o[1])} mil</span></span></div>`).join("");
+
+const AGE=[["13 a 17",2.6],["18 a 24",12.9],["25 a 34",39.1],["35 a 44",27.1],["45 a 54",12.4],["55 a 64",4.1],["65 ou mais",1.8]];
+$("age").innerHTML=AGE.map(a=>`<div class="r r2" tabindex="0" data-t="<b>${a[0]} anos</b><br>${n(a[1])}% de quem assistiu" style="grid-template-columns:90px minmax(0,1fr)"><span class="lab">${a[0]}</span>
+<span class="cell"><span class="trk"><span class="bar c1" style="width:${a[1]/40*100}%"></span></span><span class="v">${n(a[1])}%</span></span></div>`).join("");
+
+$("tbl").innerHTML=`<tr><th>Reel</th><th>Tema</th><th>Data</th><th>Views</th><th>Duração</th><th>Assistido</th><th>Pulos</th><th>Seguidores</th><th>Visitas</th><th>Salvos</th></tr>`+
+R.map(r=>`<tr><td>${r[0]}</td><td>${CAT[r[1]]}</td><td>${r[2]}</td><td>${n(r[3])}</td><td>${r[4]?mmss(r[4]):"n/d"}</td><td>${r[5]} s</td><td>${r[6]?n(r[6])+"%":"n/d"}</td><td>${r[7]}</td><td>${r[8]}</td><td>${r[9]}</td></tr>`).join("");
+
+const tip=$("tip");
+function show(el,x,y){tip.innerHTML=el.dataset.t||tipOf(R[+el.dataset.i]);tip.hidden=false;
+  const w=tip.offsetWidth,h=tip.offsetHeight;
+  tip.style.left=Math.max(8,Math.min(x+14,innerWidth-w-8))+"px";
+  tip.style.top=(y+18+h>innerHeight?y-h-10:y+18)+"px";}
+document.querySelectorAll(".r[tabindex]").forEach(el=>{
+  el.addEventListener("mousemove",e=>show(el,e.clientX,e.clientY));
+  el.addEventListener("mouseleave",()=>tip.hidden=true);
+  el.addEventListener("focus",()=>{const b=el.getBoundingClientRect();show(el,b.left+20,b.bottom-10)});
+  el.addEventListener("blur",()=>tip.hidden=true);
+});
+addEventListener("scroll",()=>tip.hidden=true,{passive:true});
+
+function calc(){const g=+$("g").value,c=+$("c").value,p=+$("p").value,a=Math.round(g*c/100);
+  $("go").textContent=n(g);$("co").textContent=c+"%";$("po").textContent="R$ "+n(p);
+  $("ra").textContent=n(a);$("rr").textContent="R$ "+n(a*p);}
+["g","c","p"].forEach(i=>$(i).addEventListener("input",calc));calc();
+</script>
+</body>
+</html>
