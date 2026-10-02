@@ -1,5 +1,6 @@
 window.DADOS = {
   "atualizado": "2 de outubro de 2026",
+  "sync": "",
   "hashtagsBase": "#morarfora #brasileirosnaeuropa #imigração #sairdobrasil #realidadedemorarfora",
   "regras": [
     "A primeira frase é o número ou a cena. Sem \"oi\" e sem ler o título que já está na tela.",

@@ -132,6 +132,9 @@ button.ck{cursor:pointer}
 .envio .col{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between;padding:0}
 .envio span{font-size:14px}
 .envio .btn{border-color:var(--hl)}
+dialog{border:1px solid var(--line);background:var(--surface);color:var(--ink);padding:20px;max-width:min(360px,calc(100vw - 32px))}
+dialog[open]{display:flex;flex-direction:column;gap:12px}
+dialog::backdrop{background:rgba(11,22,38,.6)}
 [hidden]{display:none!important}
 footer{padding-block:0 40px}
 </style>
@@ -142,6 +145,7 @@ footer{padding-block:0 40px}
   <h1>Central do Felipe</h1>
   <p>Tudo que a gente está fazendo, em ordem: o que já foi feito, o que gravar agora e o que falta.</p>
   <div class="prog" id="prog"></div>
+  <span id="sinc" style="font-size:13px;color:var(--brand-soft)"></span>
 </div></header>
 
 <nav aria-label="Seções"><div class="col">
@@ -177,22 +181,33 @@ footer{padding-block:0 40px}
   </section>
 </main>
 
-<footer class="col"><p class="small">O que você marca aqui fica salvo neste aparelho. Toca em "Avisar o Matheus" pra ele atualizar a página e ficar igual pros dois. Os números de setembro estão em <a href="numeros.html">Números</a>.</p></footer>
+<footer class="col"><p class="small"><span id="rodape"></span> Os números de setembro estão em <a href="numeros.html">Números</a>.</p></footer>
+
+<dialog id="quem"><h3>Quem está marcando?</h3><p class="small">Só pergunto uma vez neste aparelho. Serve pra mostrar quem marcou cada coisa.</p>
+<div class="marcar"><button class="btn cheio" data-quem="Felipe">Felipe</button><button class="btn" data-quem="Matheus">Matheus</button></div></dialog>
 
 <div class="envio" id="envio" hidden><div class="col"><span id="envioTxt"></span><a class="btn cheio" id="envioBtn" target="_blank" rel="noopener">Avisar o Matheus</a></div></div>
 
 <script src="dados.js"></script>
 <script>
-const D=window.DADOS, LS="central-felipe-v1", $=id=>document.getElementById(id);
-let M={}; try{M=JSON.parse(localStorage.getItem(LS)||"{}")||{}}catch(e){M={}}
-const salvar=()=>{try{localStorage.setItem(LS,JSON.stringify(M))}catch(e){}};
+const D=window.DADOS, LS="central-felipe-v2", $=id=>document.getElementById(id);
+/* Marcações: M[chave]={v,por,em}. Com D.sync preenchido, M espelha o banco compartilhado; sem ele, vive só neste aparelho. */
+const SYNC=(D.sync||"").replace(/\/+$/,""), URLM=SYNC+"/central/marcas.json";
+let M={},PEND=[],QUEM="";
+try{M=JSON.parse(localStorage.getItem(LS)||"{}")||{};PEND=JSON.parse(localStorage.getItem(LS+"-pend")||"[]")||[];QUEM=localStorage.getItem("central-quem")||"";
+  const v1=JSON.parse(localStorage.getItem("central-felipe-v1")||"null");
+  if(v1){Object.entries(v1).forEach(([k,v])=>{if(!M[k]){M[k]={v,por:QUEM,em:Date.now()};PEND.push(k)}});localStorage.removeItem("central-felipe-v1")}}catch(e){}
+const salvar=()=>{try{localStorage.setItem(LS,JSON.stringify(M));localStorage.setItem(LS+"-pend",JSON.stringify(PEND))}catch(e){}};
+const mv=k=>M[k]&&M[k].v;
+const quando=m=>m&&m.em?new Date(m.em).toLocaleString("pt-BR",{day:"2-digit",month:"2-digit",hour:"2-digit",minute:"2-digit"}):"";
+const assin=m=>m?[m.por?"por "+m.por:"",quando(m)].filter(Boolean).join(", "):"";
 const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 const slots=s=>esc(s).replace(/\[CONFIRMAR: ([^\]]+)\]/g,"<mark>você preenche: $1</mark>").replace(/\[X\]/g,"<mark>teu número</mark>");
 const wa=t=>"https://wa.me/?text="+encodeURIComponent(t);
 const RANK={pronto:0,depende:0,gravado:1,postado:2};
 const ROT={pronto:"Pronto pra gravar",depende:"Depende de você",gravado:"Gravado",postado:"Postado"};
-const stR=r=>{const l=M["r"+r.n];return l&&RANK[l]>RANK[r.status]?l:r.status};
-const stP=p=>p.s==="feito"||(p.id&&M[p.id])?"feito":"falta";
+const stR=r=>{const l=mv("r"+r.n);return l&&RANK[l]>RANK[r.status]?l:r.status};
+const stP=p=>p.s==="feito"||(p.id&&mv(p.id))?"feito":"falta";
 const abertos=new Set();
 
 function topo(){
@@ -214,7 +229,7 @@ function agora(){
 }
 
 function roteiros(){
-  $("rotLista").innerHTML=D.roteiros.map(r=>{const s=stR(r), l=M["r"+r.n];
+  $("rotLista").innerHTML=D.roteiros.map(r=>{const s=stR(r), m=M["r"+r.n];
     return `<details class="rot" id="r${r.n}" data-n="${r.n}" ${abertos.has(r.n)?"open":""}><summary>
       <span class="n">${String(r.n).padStart(2,"0")}</span><span class="tit">${esc(r.titulo)}</span>
       <span class="tags"><span class="pill ${s}">${ROT[s]}</span><span class="tipo">${esc(r.tipo)} · <span class="mono">${esc(r.duracao)}</span></span></span></summary>
@@ -227,6 +242,7 @@ function roteiros(){
       <div class="bloco"><span class="lab">Legenda</span><div class="caixa"><span>${esc(r.legenda)}</span><span class="tagsh">${esc(D.hashtagsBase+" "+r.hashtags)}</span><div><button class="btn" data-copia="${r.n}">Copiar legenda</button></div></div></div>
       ${r.conta?`<p class="small">Vídeo de contagem: no mesmo dia, sobe a enquete GRAVO ou QUERO nos stories.</p>`:""}
       <div class="marcar"><button class="btn" data-rot="${r.n}" data-v="gravado" aria-pressed="${RANK[s]>=1}">Gravei</button><button class="btn" data-rot="${r.n}" data-v="postado" aria-pressed="${s==="postado"}">Postei</button></div>
+      ${m&&assin(m)?`<p class="small">Marcado como ${m.v} ${esc(assin(m))}.</p>`:""}
     </div></details>`}).join("");
   document.querySelectorAll("details.rot").forEach(d=>d.addEventListener("toggle",()=>{const n=+d.dataset.n;d.open?abertos.add(n):abertos.delete(n)}));
 }
@@ -236,7 +252,8 @@ function perguntas(){
   $("pergLista").innerHTML=ab.map(q=>`<div class="card perg"><p class="q">${esc(q.p)}</p>
     ${q.opcoes?`<ul>${q.opcoes.map(o=>`<li>${esc(o)}</li>`).join("")}</ul>`:""}
     <p class="small">${esc(q.porque)}</p>
-    <div><a class="btn cheio" target="_blank" rel="noopener" href="${wa("Resposta pra Central\n"+q.p+"\n\n")}">Responder no WhatsApp</a></div></div>`).join("")||`<div class="card"><p>Nenhuma pergunta em aberto.</p></div>`;
+    <div class="marcar"><a class="btn cheio" target="_blank" rel="noopener" href="${wa("Resposta pra Central\n"+q.p+"\n\n")}">Responder no WhatsApp</a><button class="btn" data-passo="${q.id}" aria-pressed="${!!mv(q.id)}">Já respondi</button></div>
+    ${mv(q.id)?`<p class="small">Respondida ${esc(assin(M[q.id]))}.</p>`:""}</div>`).join("")||`<div class="card"><p>Nenhuma pergunta em aberto.</p></div>`;
 }
 
 function caminho(){
@@ -245,16 +262,18 @@ function caminho(){
     <p class="small">${esc(f.resumo)}</p>
     <div>${f.passos.map(p=>{const s=stP(p), pode=p.id&&p.s!=="feito";
       return `<div class="passo ${s}">${pode?`<button class="ck" data-passo="${p.id}" aria-pressed="${s==="feito"}" aria-label="Marcar como feito: ${esc(p.t)}">✓</button>`:`<span class="ck" aria-hidden="true">✓</span>`}
-      <span class="pt">${p.link?`<a href="${p.link}">${esc(p.t)}</a>`:esc(p.t)}</span><span class="pill quem">${esc(p.quem)}</span>${p.d&&s!=="feito"?`<span class="pd">${esc(p.d)}</span>`:""}</div>`}).join("")}</div></div>`).join("");
+      <span class="pt">${p.link?`<a href="${p.link}">${esc(p.t)}</a>`:esc(p.t)}</span><span class="pill quem">${esc(p.quem)}</span>${p.d&&s!=="feito"?`<span class="pd">${esc(p.d)}</span>`:""}${pode&&s==="feito"&&assin(M[p.id])?`<span class="pd">Marcado ${esc(assin(M[p.id]))}</span>`:""}</div>`}).join("")}</div></div>`).join("");
   $("medicao").innerHTML=D.medicao.map(m=>`<li>${esc(m)}</li>`).join("");
   $("carr").innerHTML=D.carrosseis.map(c=>`<div class="passo" style="grid-template-columns:1fr"><span><b>${esc(c.t)}</b></span><span class="pd" style="grid-column:1">${esc(c.s)}</span></div>`).join("");
   $("fila").innerHTML=D.fila.map(m=>`<li>${esc(m)}</li>`).join("");
 }
 
 function envio(){
+  if(SYNC){$("envio").hidden=true;return}
   const gr=[],po=[],fe=[];
-  D.roteiros.forEach(r=>{const l=M["r"+r.n];if(l&&RANK[l]>RANK[r.status]){(l==="postado"?po:gr).push(r.n)}});
-  D.fases.forEach(f=>f.passos.forEach(p=>{if(p.id&&p.s!=="feito"&&M[p.id])fe.push(p.t)}));
+  D.roteiros.forEach(r=>{const l=mv("r"+r.n);if(l&&RANK[l]>RANK[r.status]){(l==="postado"?po:gr).push(r.n)}});
+  D.fases.forEach(f=>f.passos.forEach(p=>{if(p.id&&p.s!=="feito"&&mv(p.id))fe.push(p.t)}));
+  D.perguntas.forEach(q=>{if(mv(q.id))fe.push("respondi: "+q.p)});
   const n=gr.length+po.length+fe.length; $("envio").hidden=!n; if(!n)return;
   $("envioTxt").textContent=n===1?"Você marcou 1 item que o Matheus ainda não viu.":`Você marcou ${n} itens que o Matheus ainda não viu.`;
   let t="Atualização da Central";
@@ -266,19 +285,66 @@ function envio(){
 
 function tudo(){topo();agora();roteiros();perguntas();caminho();envio()}
 
+/* ---- sincronização (Firebase Realtime Database via REST + EventSource) ---- */
+function marca(k,v){
+  if(v==null)delete M[k]; else M[k]={v,por:QUEM,em:Date.now()};
+  if(SYNC&&!PEND.includes(k))PEND.push(k);
+  salvar(); tudo(); enviar();
+}
+function enviar(){
+  if(!SYNC||!PEND.length)return;
+  const lote=PEND.slice(), corpo={}; lote.forEach(k=>corpo[k]=M[k]||null);
+  fetch(URLM,{method:"PATCH",headers:{"Content-Type":"application/json"},body:JSON.stringify(corpo)})
+    .then(r=>{if(!r.ok)throw 0; PEND=PEND.filter(k=>!lote.includes(k)); salvar(); estado(true)})
+    .catch(()=>estado(false));
+}
+function recebe(tipo,msg){
+  const p=msg.path, d=msg.data;
+  const poe=(k,val)=>{if(PEND.includes(k))return; if(val==null)delete M[k]; else M[k]=val};
+  if(p==="/"){
+    if(tipo==="put")Object.keys(M).forEach(k=>{if(!PEND.includes(k))delete M[k]});
+    Object.entries(d||{}).forEach(([k,val])=>poe(k,val));
+  }else{
+    const partes=p.slice(1).split("/");
+    if(partes.length===1&&tipo==="put")poe(partes[0],d); else return carregar();
+  }
+  salvar(); tudo();
+}
+function carregar(){
+  return fetch(URLM).then(r=>{if(!r.ok)throw 0;return r.json()}).then(d=>{recebe("put",{path:"/",data:d});estado(true);enviar()}).catch(()=>estado(false));
+}
+function estado(ok){
+  $("sinc").textContent=!SYNC?"":ok?"Sincronizado: o que um marca, o outro vê na hora.":"Sem conexão agora. O que você marcar sobe quando a internet voltar.";
+  $("rodape").textContent=SYNC?"As marcações desta página são compartilhadas: o que o Felipe ou o Matheus marcam aparece para os dois.":"O que você marca aqui fica salvo neste aparelho. Toca em \"Avisar o Matheus\" pra ele atualizar a página e ficar igual pros dois.";
+}
+function ligar(){
+  estado(false); if(!SYNC)return;
+  if(!window.EventSource){carregar();setInterval(carregar,20000);return}
+  const es=new EventSource(URLM);
+  es.addEventListener("put",e=>{recebe("put",JSON.parse(e.data));estado(true);enviar()});
+  es.addEventListener("patch",e=>{recebe("patch",JSON.parse(e.data));estado(true)});
+  es.onerror=()=>estado(false);
+  addEventListener("online",enviar);
+}
+/* pergunta quem está usando só na primeira marcação */
+let depois=null;
+function quem(cb){ if(QUEM||!SYNC||!$("quem").showModal)return cb(); depois=cb; $("quem").showModal(); }
+
 document.addEventListener("click",e=>{
+  const q=e.target.closest("[data-quem]");
+  if(q){QUEM=q.dataset.quem; try{localStorage.setItem("central-quem",QUEM)}catch(x){} $("quem").close(); if(depois){const f=depois;depois=null;f()} return}
   const b=e.target.closest("[data-rot],[data-passo],[data-copia]"); if(!b)return;
   if(b.dataset.rot){const k="r"+b.dataset.rot,v=b.dataset.v,r=D.roteiros.find(x=>x.n==b.dataset.rot),s=stR(r);
-    if(v==="postado")M[k]=s==="postado"?"gravado":"postado"; else M[k]=RANK[s]>=1?null:"gravado";
-    if(!M[k])delete M[k]; salvar(); tudo();}
-  else if(b.dataset.passo){const k=b.dataset.passo; if(M[k])delete M[k]; else M[k]=true; salvar(); tudo();}
+    const nv=v==="postado"?(s==="postado"?"gravado":"postado"):(RANK[s]>=1?null:"gravado");
+    quem(()=>marca(k,nv));}
+  else if(b.dataset.passo){const k=b.dataset.passo; quem(()=>marca(k,mv(k)?null:true));}
   else{const r=D.roteiros.find(x=>x.n==b.dataset.copia),t=r.legenda+"\n\n"+D.hashtagsBase+" "+r.hashtags;
     const ok=()=>{b.textContent="Copiado";setTimeout(()=>b.textContent="Copiar legenda",1600)};
     if(navigator.clipboard)navigator.clipboard.writeText(t).then(ok,()=>{}); else{const a=document.createElement("textarea");a.value=t;document.body.appendChild(a);a.select();try{document.execCommand("copy");ok()}catch(x){}a.remove()}}
 });
 /* link direto para um roteiro: .../#r3 abre o roteiro 3 */
 const hr=/^#r(\d+)$/.exec(location.hash); if(hr)abertos.add(+hr[1]);
-tudo();
+tudo(); ligar();
 if(location.hash){const el=document.querySelector(location.hash);if(el)el.scrollIntoView()}
 </script>
 </body>

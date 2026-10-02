@@ -19,6 +19,12 @@ Em `dados.js`:
 - Passo concluído: trocar o `s` para `feito`.
 - Trocar a data em `atualizado`.
 
-O que o Felipe marca na página fica salvo só no aparelho dele; o botão "Avisar o Matheus" manda a lista por WhatsApp para a mudança ser registrada aqui.
+## Marcações compartilhadas
+
+Com o campo `sync` de `dados.js` preenchido com o endereço de um Firebase Realtime Database, as marcações (gravei, postei, já fiz, já respondi) ficam em `central/marcas` nesse banco e aparecem para os dois na hora, com quem marcou e quando. As regras do banco estão em `firebase-regras.json`. O banco guarda só marcações; respostas e valores continuam indo pelo WhatsApp.
+
+Para ver o estado atual: abrir `<endereço do banco>/central/marcas.json`.
+
+Com `sync` vazio, o que se marca fica salvo só no aparelho e o botão "Avisar o Matheus" manda a lista por WhatsApp.
 
 Link direto para um roteiro: acrescentar `#r3` ao endereço abre o roteiro 3.

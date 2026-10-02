@@ -1,0 +1,17 @@
+{
+  "rules": {
+    "central": {
+      "marcas": {
+        ".read": true,
+        "$k": {
+          ".write": "$k.matches(/^[a-z0-9-]{1,40}$/)",
+          ".validate": "newData.hasChildren(['v', 'em'])",
+          "v": { ".validate": "newData.isBoolean() || (newData.isString() && newData.val().length < 20)" },
+          "por": { ".validate": "newData.isString() && newData.val().length < 20" },
+          "em": { ".validate": "newData.isNumber()" },
+          "$outro": { ".validate": false }
+        }
+      }
+    }
+  }
+}
