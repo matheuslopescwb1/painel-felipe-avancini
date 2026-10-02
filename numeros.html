@@ -107,11 +107,36 @@ details summary:focus-visible,input:focus-visible{outline:2px solid var(--accent
 .result b{font-family:var(--display);font-size:30px;display:block;line-height:1.1}
 .pill{display:inline-block;font-size:12px;font-weight:600;padding:2px 8px;border-radius:99px;border:1px solid var(--axis);color:var(--ink2)}
 </style>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Doto:wght@800;900&family=Urbanist:wght@300;400;500;600;700&display=swap">
+<meta name="color-scheme" content="dark">
+<style>
+/* Mesma linguagem visual da Central: fundo quase preto, uma cor por significado, números em matriz de pontos. */
+html:root:root{
+  --page:#090B0F; --surface:#0E1116; --ink:#F2F6FA; --ink2:#9AA6B2; --muted:#66727E;
+  --grid:rgba(221,232,242,.10); --axis:rgba(221,232,242,.22); --line:rgba(221,232,242,.10);
+  --s1:#25E3FF; --s2:#FFB020; --s3:#FF3355; --track:rgba(221,232,242,.08);
+  --accent:#25E3FF; --accent-ink:#03161B; --warn-bg:rgba(255,176,32,.12); --warn-ink:#FFB020;
+  --display:"Urbanist",system-ui,sans-serif; --body:"Urbanist",system-ui,sans-serif; color-scheme:dark}
+body{background:radial-gradient(70% 38% at 85% 0%,rgba(37,227,255,.11),transparent 70%),radial-gradient(60% 30% at 0% 22%,rgba(255,176,32,.07),transparent 70%),#090B0F;background-attachment:fixed;font-size:16px}
+h1{font-weight:300;font-stretch:normal;letter-spacing:-.02em}
+h2,h3{font-weight:500;font-stretch:normal}
+.eyebrow{font-family:"Doto",monospace;font-weight:800;letter-spacing:.14em}
+.card,.tile{border-radius:22px}
+.tile b,.step b,.result b,.calc output{font-family:"Doto",monospace;font-weight:900;color:#25E3FF;text-shadow:0 0 16px rgba(37,227,255,.5)}
+.step{border-radius:16px;background:rgba(221,232,242,.03)}
+.part{border-top:1px solid var(--line)}
+.bar{box-shadow:0 0 14px -4px currentColor}
+.stage.final{box-shadow:0 0 26px -8px rgba(37,227,255,.7)}
+#tip{background:#F2F6FA;color:#090B0F;border-radius:10px}
+.volta{display:inline-flex;align-items:center;gap:10px;font-weight:600;letter-spacing:.06em;font-size:15px;color:var(--ink);text-decoration:none;margin-bottom:10px}
+.volta svg{width:26px;height:26px;filter:drop-shadow(0 0 8px rgba(37,227,255,.55))}
+.volta small{color:var(--accent);font-weight:500;letter-spacing:0;margin-left:6px}
+</style>
 </head>
 <body>
 <div class="wrap">
 <header>
-  <a href="./" style="color:var(--accent);font-weight:600;text-decoration:none">← Voltar para a Central</a>
+  <a class="volta" href="./"><svg viewBox="0 0 48 48" aria-hidden="true"><path d="M5 40 17.5 8H40l-2.8 7.2H23.4l-2.3 6h11.4l-2.8 7.2H18.3L13.7 40z" fill="#25E3FF"/><path d="M28.6 40 36.4 19.6 40.4 40h-5.2l-.7-4.2-1.6 4.2z" fill="#F2F6FA"/></svg>FELIPE AVANCINI <small>← Voltar para a Central</small></a>
   <span class="eyebrow">@heynego · leitura de 1 de outubro de 2026</span>
   <h1>Números de setembro</h1>
   <p class="sub">O que os 16 reels do aquecimento mostraram. Foram os primeiros vídeos depois de meses parado, então estes números são o ponto de partida da retomada.</p>

@@ -8,190 +8,236 @@
 <meta property="og:type" content="website">
 <meta property="og:title" content="Central do Felipe">
 <meta property="og:description" content="O que já foi feito, o que gravar agora e o que falta.">
-<meta name="theme-color" content="#0F2A4A">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%230F2A4A'/%3E%3Cpath d='M8 17l5 5 11-12' fill='none' stroke='%23FFC629' stroke-width='4'/%3E%3C/svg%3E">
+<meta name="theme-color" content="#090B0F">
+<meta name="color-scheme" content="dark">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Crect width='48' height='48' rx='11' fill='%23090B0F'/%3E%3Cpath d='M9 38 19.5 10H38l-2.4 6.4H24.2l-2 5.4h9.6l-2.4 6.4h-9.6L16.1 38z' fill='%2325E3FF'/%3E%3Cpath d='M30.5 38 37 20.6 40 38h-4.4l-.5-3.4-1.3 3.4z' fill='%23F2F6FA'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@600..900&family=IBM+Plex+Mono:wght@500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Doto:wght@600;800;900&family=Urbanist:wght@300;400;500;600;700&display=swap">
 <title>Central do Felipe</title>
 <style>
-/* Central de acompanhamento: coluna única, pensada para o celular. Cores do brandkit (passaporte, etiqueta, carimbo). */
+/* Central de acompanhamento. Linguagem visual: fundo quase preto, cartões iluminados pela própria borda,
+   uma cor por significado (âmbar = a fazer, lima = gravado, ciano = postado, vermelho = travado), números em matriz de pontos. */
 :root{
-  --page:#F3F5F7; --surface:#FFFFFF; --ink:#0B1626; --ink2:#5A6675; --line:rgba(11,22,38,.14);
-  --brand:#0F2A4A; --brand-ink:#FAFBFC; --brand-soft:#C9D6E6;
-  --hl:#FFC629; --hl-ink:#0B1626; --mark:#FFE9A6; --mark-ink:#0B1626;
-  --done:#0F2A4A; --done-ink:#FAFBFC; --alert:#C8371F;
-  --display:"Archivo","Arial Narrow",system-ui,sans-serif;
-  --body:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
-  --mono:"IBM Plex Mono",ui-monospace,Consolas,monospace;
+  --bg:#090B0F; --core:#0E1116; --ink:#F2F6FA; --ink2:#9AA6B2; --ink3:#66727E; --line:rgba(221,232,242,.10);
+  --amber:255,176,32; --lime:168,255,53; --cyan:37,227,255; --red:255,51,85; --neutral:221,232,242;
+  --h:var(--neutral);
+  --sans:"Urbanist",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --dot:"Doto","Courier New",monospace;
+  color-scheme:dark;
 }
-@media (prefers-color-scheme:dark){:root{
-  --page:#0B1626; --surface:#0F2A4A; --ink:#FAFBFC; --ink2:#C9D6E6; --line:rgba(250,251,252,.18);
-  --mark:#5C4A0E; --mark-ink:#FFF3CC; --done:#C9D6E6; --done-ink:#0B1626; --alert:#FF9480; color-scheme:dark}}
 *{box-sizing:border-box}
-html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;scroll-padding-top:60px}
-body{margin:0;background:var(--page);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.5}
-h1,h2,h3{font-family:var(--display);letter-spacing:-.02em;line-height:1.1;margin:0;text-wrap:balance}
-h1{font-size:clamp(34px,8vw,52px);font-weight:900}
-h2{font-size:clamp(24px,5.5vw,32px);font-weight:800}
-h3{font-size:18px;font-weight:800;letter-spacing:-.01em}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;scroll-padding-top:68px}
+body{margin:0;color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.5;
+  background:radial-gradient(70% 38% at 85% 0%,rgba(var(--cyan),.11),transparent 70%),radial-gradient(60% 30% at 0% 22%,rgba(var(--amber),.07),transparent 70%),var(--bg);background-attachment:fixed}
+h1,h2,h3{margin:0;font-weight:500;letter-spacing:-.02em;line-height:1.08;text-wrap:balance}
+h1{font-size:clamp(38px,10vw,64px);font-weight:300}
+h1 span{display:block;color:var(--ink3)}
+h1 b{display:block;font-weight:500;color:var(--ink)}
+h2{font-size:clamp(28px,7vw,40px);font-weight:400}
+h3{font-size:19px;font-weight:600;letter-spacing:-.01em;line-height:1.2}
 p{margin:0}
 a{color:inherit}
-.col{max-width:760px;margin:0 auto;padding-inline:16px}
-.eyebrow{font-size:12px;font-weight:600;letter-spacing:.18em;text-transform:uppercase}
-.small{font-size:14px;color:var(--ink2)}
-.mono{font-family:var(--mono);font-variant-numeric:tabular-nums}
+.col{max-width:780px;margin:0 auto;padding-inline:16px}
+.small{font-size:14.5px;color:var(--ink2)}
+.tag{font-family:var(--dot);font-weight:800;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink3)}
+.dm{font-family:var(--dot);font-weight:800;font-variant-numeric:tabular-nums}
+.mono{font-family:var(--dot);font-weight:800}
 
-.topo{background:var(--brand);color:var(--brand-ink);padding-block:32px 28px}
-.topo .col{display:flex;flex-direction:column;gap:14px}
-.topo .eyebrow{color:var(--brand-soft)}
-.topo p{color:var(--brand-soft);max-width:52ch}
-.prog{display:flex;flex-direction:column;gap:8px;margin-top:6px}
-.prog .num{font-family:var(--mono);font-weight:600;font-size:15px;color:var(--brand-ink)}
-.prog .num b{color:var(--hl);font-size:28px;font-weight:600}
-.trilho{height:10px;background:rgba(250,251,252,.18);display:flex}
-.trilho i{display:block;height:100%}
-.trilho .t2{background:var(--hl)}
-.trilho .t1{background:var(--brand-soft)}
-.chaves{display:flex;flex-wrap:wrap;gap:6px 18px;font-size:13px;color:var(--brand-soft)}
-.chaves i{display:inline-block;width:10px;height:10px;margin-right:6px}
+/* hues */
+.h-amber,.pronto,.st-pronto{--h:var(--amber)}
+.h-lime,.gravado,.st-gravado{--h:var(--lime)}
+.h-cyan,.postado,.st-postado{--h:var(--cyan)}
+.h-red,.depende,.st-depende{--h:var(--red)}
 
-nav{position:sticky;top:0;z-index:5;background:var(--page);border-bottom:1px solid var(--line)}
-nav .col{display:flex;gap:4px;overflow-x:auto;scrollbar-width:none}
-nav a{flex:none;padding:14px 12px;font-size:14px;font-weight:600;text-decoration:none;color:var(--ink2);white-space:nowrap}
-nav a:hover,nav a:focus-visible{color:var(--ink)}
+/* logo */
+.logo{display:inline-flex;align-items:center;gap:10px;text-decoration:none;color:var(--ink);font-weight:600;letter-spacing:.06em;font-size:15px;white-space:nowrap}
+.logo svg{width:28px;height:28px;flex:none;filter:drop-shadow(0 0 8px rgba(var(--cyan),.55))}
+.logo small{display:block;font-size:10px;font-weight:500;letter-spacing:.22em;color:var(--ink3)}
 
-main{display:flex;flex-direction:column;gap:44px;padding-block:32px 120px}
+nav{position:sticky;top:0;z-index:5;background:rgba(9,11,15,.72);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+nav .col{display:flex;align-items:center;gap:14px}
+nav .links{display:flex;gap:2px;overflow-x:auto;scrollbar-width:none;margin-left:auto}
+nav .links::-webkit-scrollbar{display:none}
+nav .links a{flex:none;padding:16px 10px;font-size:14px;font-weight:500;text-decoration:none;color:var(--ink2);white-space:nowrap;transition:color .2s}
+nav .links a:hover,nav .links a:focus-visible{color:rgb(var(--cyan))}
+@media (max-width:560px){nav .logo span{display:none}}
+
+.topo{padding-block:44px 8px}
+.topo .col{display:flex;flex-direction:column;gap:18px}
+.topo .lead{color:var(--ink2);max-width:46ch;font-size:17px}
+.live{display:inline-flex;align-items:center;gap:8px;align-self:flex-start;font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;padding:6px 12px;border-radius:999px;border:1px solid rgba(var(--h),.5);color:rgb(var(--h));background:rgba(var(--h),.08)}
+.live i{width:7px;height:7px;border-radius:50%;background:rgb(var(--h));box-shadow:0 0 10px rgb(var(--h));animation:pisca 1.8s ease-in-out infinite}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--line);margin-top:10px}
+.stat{padding:20px 0 6px 14px;border-left:1px solid var(--line);display:flex;flex-direction:column;gap:2px}
+.stat:first-child{border-left:0;padding-left:0}
+.stat b{font-family:var(--dot);font-weight:900;font-size:clamp(34px,9vw,52px);line-height:1;color:rgb(var(--h));text-shadow:0 0 18px rgba(var(--h),.55)}
+.stat span{font-size:13.5px;color:var(--ink2)}
+@media (max-width:520px){.stats{grid-template-columns:1fr 1fr}.stat:nth-child(3){border-left:0;padding-left:0}.stat:nth-child(n+3){border-top:1px solid var(--line)}}
+/* trilho dos roteiros, um nó por vídeo */
+.rail{display:flex;justify-content:space-between;position:relative;margin-top:6px;padding-top:4px}
+.rail::before{content:"";position:absolute;left:8px;right:8px;top:11px;border-top:2px dotted rgba(var(--neutral),.22)}
+.nodo{position:relative;display:flex;flex-direction:column;align-items:center;gap:8px;text-decoration:none;color:var(--ink3);font-family:var(--dot);font-weight:800;font-size:12px}
+.nodo i{width:14px;height:14px;border-radius:50%;background:rgb(var(--h));box-shadow:0 0 0 4px var(--bg),0 0 14px 2px rgba(var(--h),.7);transition:transform .2s}
+.nodo:hover i{transform:scale(1.35)}
+.nodo.st-postado,.nodo.st-gravado{color:rgb(var(--h))}
+
+main{display:flex;flex-direction:column;gap:64px;padding-block:44px 130px}
 section{display:flex;flex-direction:column;gap:14px}
-.cab{display:flex;flex-direction:column;gap:6px;margin-bottom:2px}
-.cab .eyebrow{color:var(--ink2)}
-.card{background:var(--surface);border:1px solid var(--line);padding:16px}
+.cab{display:flex;flex-direction:column;gap:10px;margin-bottom:6px}
+
+/* cartões: núcleo escuro, luz que vem da borda */
+.card{background:var(--core);border:1px solid var(--line);border-radius:22px;padding:18px}
+.glow{background:radial-gradient(130% 90% at 50% -10%,rgba(var(--h),.16),transparent 62%),var(--core);border:1px solid rgba(var(--h),.5);
+  box-shadow:inset 0 1px 0 rgba(var(--h),.55),inset 0 0 26px rgba(var(--h),.12),0 0 30px -10px rgba(var(--h),.55)}
+.bloco{display:flex;flex-direction:column;gap:8px}
 
 /* agora */
-.agora{display:grid;grid-template-columns:auto 1fr;gap:4px 14px;align-items:start}
-.agora .n{font-family:var(--mono);font-weight:600;font-size:34px;line-height:1;color:var(--ink);background:var(--hl);color:var(--hl-ink);padding:8px 12px;grid-row:span 3}
-.agora .acoes{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+.agora{display:grid;grid-template-columns:auto 1fr;gap:4px 16px;align-items:start;transition:transform .25s}
+.agora:hover{transform:translateY(-2px)}
+.agora .n{font-family:var(--dot);font-weight:900;font-size:46px;line-height:.9;color:rgb(var(--h));text-shadow:0 0 16px rgba(var(--h),.6);grid-row:span 3;min-width:34px}
+.agora .acoes{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
 
-.btn{font:inherit;font-size:14px;font-weight:600;border:1.5px solid var(--ink);background:transparent;color:var(--ink);padding:9px 14px;border-radius:8px;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:6px;min-height:42px}
-.btn.cheio{background:var(--hl);border-color:var(--hl);color:var(--hl-ink)}
-.btn[aria-pressed="true"]{background:var(--done);border-color:var(--done);color:var(--done-ink)}
-.btn:focus-visible,summary:focus-visible,nav a:focus-visible{outline:2px solid var(--hl);outline-offset:2px}
+.btn{font:inherit;font-size:14px;font-weight:600;border:1px solid rgba(var(--neutral),.22);background:rgba(var(--neutral),.05);color:var(--ink);padding:9px 16px;border-radius:999px;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:6px;min-height:42px;transition:background .2s,box-shadow .2s,transform .15s,border-color .2s}
+.btn:hover{border-color:rgba(var(--neutral),.45)}
+.btn:active{transform:scale(.97)}
+.btn.cheio{background:rgb(var(--cyan));border-color:rgb(var(--cyan));color:#03161B;box-shadow:0 0 22px -4px rgba(var(--cyan),.7)}
+.btn[aria-pressed="true"]{background:rgb(var(--lime));border-color:rgb(var(--lime));color:#0C1400;box-shadow:0 0 22px -4px rgba(var(--lime),.7)}
+.btn.mini{min-height:34px;padding:5px 12px;font-size:13px}
+.btn:focus-visible,summary:focus-visible,nav a:focus-visible,.ck:focus-visible{outline:2px solid rgb(var(--cyan));outline-offset:2px}
 
-.pill{display:inline-block;font-size:12px;font-weight:700;padding:3px 9px;border-radius:8px;border:1.5px solid transparent;white-space:nowrap}
-.pill.pronto{background:var(--hl);color:var(--hl-ink)}
-.pill.depende{border-color:var(--alert);color:var(--alert)}
-.pill.gravado{border-color:var(--ink);color:var(--ink)}
-.pill.postado{background:var(--done);color:var(--done-ink)}
-.pill.quem{border-color:var(--line);color:var(--ink2);font-weight:600}
-
-/* roteiros */
-details.rot{background:var(--surface);border:1px solid var(--line)}
-details.rot>summary{list-style:none;cursor:pointer;display:grid;grid-template-columns:auto 1fr;gap:4px 14px;padding:14px 16px;align-items:start}
-details.rot>summary::-webkit-details-marker{display:none}
-.rot .n{font-family:var(--mono);font-weight:600;font-size:22px;color:var(--ink2);grid-row:span 2;min-width:30px}
-.rot .tit{font-family:var(--display);font-weight:800;font-size:18px;line-height:1.2}
-.rot .tags{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
-.rot .tipo{font-size:13px;color:var(--ink2)}
-.rot .corpo{border-top:1px dotted var(--ink2);padding:16px;display:flex;flex-direction:column;gap:18px}
-.meta{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px}
-.meta div{display:flex;flex-direction:column;gap:2px;font-size:15px}
-.rot .lab,.lab{font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--ink2)}
-.aviso{border-left:4px solid var(--alert);padding:8px 12px;font-size:14px}
-.cena{display:grid;grid-template-columns:64px 1fr;gap:4px 12px;padding-block:12px;border-top:1px solid var(--line)}
-.cena:first-of-type{border-top:0;padding-top:0}
-.cena .t{font-family:var(--mono);font-weight:600;font-size:13px;color:var(--ink2);padding-top:3px}
-.cena .fala{font-size:17px;font-weight:500;line-height:1.45}
-.cena .tela{grid-column:2;font-size:14px;color:var(--ink2)}
-mark{background:var(--mark);color:var(--mark-ink);padding:1px 5px;font-weight:600;font-size:.92em}
-.bloco{display:flex;flex-direction:column;gap:6px}
-.caixa{background:var(--page);padding:12px;font-size:15px;display:flex;flex-direction:column;gap:8px}
-.caixa .tagsh{font-size:13px;color:var(--ink2);overflow-wrap:anywhere}
-ul{margin:0;padding-left:18px;display:flex;flex-direction:column;gap:5px}
-.marcar{display:flex;flex-wrap:wrap;gap:8px}
+.pill{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:600;padding:3px 10px;border-radius:999px;border:1px solid rgba(var(--h),.55);color:rgb(var(--h));background:rgba(var(--h),.08);white-space:nowrap}
+.pill::before{content:"";width:6px;height:6px;border-radius:50%;background:rgb(var(--h));box-shadow:0 0 8px rgb(var(--h))}
+.pill.quem{--h:var(--neutral);color:var(--ink2);border-color:var(--line);background:none}
+.pill.quem::before{display:none}
 
 /* semana */
+.chart{display:flex;align-items:flex-end;gap:6px;height:130px;padding-top:8px}
+.chart .b{flex:1;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;gap:6px;height:100%;text-decoration:none}
+.chart .b i{display:block;width:100%;border-radius:8px 8px 3px 3px;background:linear-gradient(rgb(var(--h)),rgba(var(--h),.28));box-shadow:0 0 18px -4px rgba(var(--h),.7);transform-origin:bottom;animation:sobe .7s cubic-bezier(.2,.8,.2,1) backwards}
+.chart .b span{font-family:var(--dot);font-weight:800;font-size:11px;color:var(--ink3)}
+.leg{display:flex;flex-wrap:wrap;gap:8px 18px;font-size:13px;color:var(--ink2)}
+.leg span::before{content:"";display:inline-block;width:8px;height:8px;border-radius:50%;background:rgb(var(--h));box-shadow:0 0 8px rgb(var(--h));margin-right:7px}
 .sem{display:flex;flex-direction:column;gap:10px}
-.ag{display:grid;grid-template-columns:62px 1fr;gap:4px 14px;align-items:start}
-.ag .dia{display:flex;flex-direction:column;gap:1px;font-family:var(--mono);font-size:13px;color:var(--ink2);border-right:1px dotted var(--ink2);padding-right:10px;min-height:100%}
-.ag .dia b{font-size:15px;color:var(--ink);letter-spacing:.06em}
-.ag .agc{display:flex;flex-direction:column;gap:8px;min-width:0}
-.ag a.tit{font-family:var(--display);font-weight:800;font-size:17px;line-height:1.2;text-decoration:none}
-.ag a.tit:hover{text-decoration:underline}
-.ag .tags{display:flex;flex-wrap:wrap;gap:6px;align-items:center;font-size:13px;color:var(--ink2)}
-.ag.hoje{border-color:var(--hl);border-width:2px}
-.btn.mini{min-height:34px;padding:5px 10px;font-size:13px}
+.ag{display:grid;grid-template-columns:60px 1fr;gap:4px 14px;align-items:start;transition:transform .25s}
+.ag:hover{transform:translateY(-2px)}
+.ag .dia{display:flex;flex-direction:column;gap:2px;font-family:var(--dot);font-weight:800;font-size:13px;color:var(--ink2);border-right:1px dotted rgba(var(--neutral),.25);padding-right:10px;min-height:100%}
+.ag .dia b{font-size:16px;color:rgb(var(--h));letter-spacing:.06em;text-shadow:0 0 12px rgba(var(--h),.5)}
+.ag .agc{display:flex;flex-direction:column;gap:9px;min-width:0}
+.ag .tit{font-weight:600;font-size:17.5px;line-height:1.2;text-decoration:none}
+.ag a.tit:hover{color:rgb(var(--cyan))}
+.ag .tags{display:flex;flex-wrap:wrap;gap:6px 8px;align-items:center;font-size:13px;color:var(--ink2)}
+.ag.hoje{animation:pulso 2.6s ease-in-out infinite}
+
+/* roteiros */
+details.rot{border-radius:22px;transition:transform .25s}
+details.rot:not([open]):hover{transform:translateY(-2px)}
+details.rot>summary{list-style:none;cursor:pointer;display:grid;grid-template-columns:auto 1fr;gap:6px 14px;padding:16px 18px;align-items:start}
+details.rot>summary::-webkit-details-marker{display:none}
+.rot .n{font-family:var(--dot);font-weight:900;font-size:26px;line-height:1;color:rgb(var(--h));text-shadow:0 0 12px rgba(var(--h),.5);grid-row:span 2;min-width:34px}
+.rot .tit{font-weight:600;font-size:18.5px;line-height:1.2}
+.rot .tags{display:flex;flex-wrap:wrap;gap:6px 8px;align-items:center}
+.rot .tipo{font-size:13px;color:var(--ink2)}
+.rot .corpo{border-top:1px dotted rgba(var(--neutral),.22);padding:18px;display:flex;flex-direction:column;gap:20px;animation:abre .35s ease}
+.meta{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:14px}
+.meta div{display:flex;flex-direction:column;gap:3px;font-size:15px}
+.lab{font-family:var(--dot);font-weight:800;font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink3)}
+.aviso{border-left:2px solid rgb(var(--red));padding:8px 12px;font-size:14.5px;background:rgba(var(--red),.07);border-radius:0 12px 12px 0}
+.cena{display:grid;grid-template-columns:62px 1fr;gap:4px 12px;padding-block:13px;border-top:1px solid var(--line)}
+.cena:first-of-type{border-top:0;padding-top:0}
+.cena .t{font-family:var(--dot);font-weight:800;font-size:13px;color:var(--ink3);padding-top:4px}
+.cena .fala{font-size:17.5px;font-weight:500;line-height:1.45}
+.cena .tela{grid-column:2;font-size:14.5px;color:var(--ink2)}
+mark{background:rgba(var(--amber),.14);color:rgb(var(--amber));padding:1px 6px;border-radius:6px;font-weight:600;font-size:.92em;box-shadow:inset 0 -1px 0 rgba(var(--amber),.6)}
+.caixa{background:rgba(var(--neutral),.04);border:1px solid var(--line);border-radius:16px;padding:14px;font-size:15px;display:flex;flex-direction:column;gap:8px}
+.caixa .tagsh{font-size:13px;color:var(--ink2);overflow-wrap:anywhere}
+ul{margin:0;padding-left:18px;display:flex;flex-direction:column;gap:6px}
+li::marker{color:var(--ink3)}
+.marcar{display:flex;flex-wrap:wrap;gap:8px}
 
 /* perguntas */
-.perg{display:flex;flex-direction:column;gap:8px}
-.perg .q{font-weight:600;font-size:17px;line-height:1.35}
+.perg{display:flex;flex-direction:column;gap:10px}
+.perg .q{font-weight:500;font-size:18px;line-height:1.3}
 
 /* caminho */
 .fase{display:flex;flex-direction:column;gap:10px}
-.fase .fcab{display:flex;flex-wrap:wrap;gap:8px 12px;align-items:baseline}
-.fase .fn{font-family:var(--mono);font-weight:600;color:var(--ink2)}
-.selo{font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:2px 8px}
-.selo.feito{background:var(--done);color:var(--done-ink)}
-.selo.agora{background:var(--hl);color:var(--hl-ink)}
-.selo.depois{border:1.5px solid var(--line);color:var(--ink2)}
-.passo{display:grid;grid-template-columns:28px 1fr auto;gap:2px 10px;align-items:start;padding-block:9px;border-top:1px solid var(--line)}
-.passo .ck{width:24px;height:24px;border:2px solid var(--ink2);display:grid;place-items:center;font-size:15px;font-weight:700;line-height:1;background:transparent;color:transparent;padding:0;font-family:var(--body)}
+.fase .fcab{display:flex;flex-wrap:wrap;gap:8px 12px;align-items:center}
+.fase .fn{font-family:var(--dot);font-weight:900;font-size:24px;color:rgb(var(--h));text-shadow:0 0 12px rgba(var(--h),.5)}
+.fase.feito{--h:var(--lime)}.fase.agora{--h:var(--cyan)}
+.passo{display:grid;grid-template-columns:28px 1fr auto;gap:2px 10px;align-items:start;padding-block:10px;border-top:1px solid var(--line)}
+.passo .ck{width:24px;height:24px;border-radius:50%;border:1.5px solid rgba(var(--neutral),.35);display:grid;place-items:center;font-size:13px;font-weight:700;line-height:1;background:transparent;color:transparent;padding:0;font-family:var(--sans);transition:background .2s,box-shadow .2s}
 button.ck{cursor:pointer}
-.passo.feito .ck{background:var(--done);border-color:var(--done);color:var(--done-ink)}
-.passo.feito .pt{color:var(--ink2);text-decoration:line-through;text-decoration-thickness:1px}
+.passo.feito .ck{background:rgb(var(--lime));border-color:rgb(var(--lime));color:#0C1400;box-shadow:0 0 14px -2px rgba(var(--lime),.8)}
+.passo.feito .pt{color:var(--ink3)}
 .passo .pd{grid-column:2/-1;font-size:14px;color:var(--ink2)}
 
-.envio{position:fixed;left:0;right:0;bottom:0;z-index:6;background:var(--brand);color:var(--brand-ink);padding:12px 16px calc(12px + env(safe-area-inset-bottom))}
-.envio .col{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between;padding:0}
+.envio{position:fixed;left:12px;right:12px;bottom:calc(12px + env(safe-area-inset-bottom));z-index:6;border-radius:20px;padding:12px 14px;--h:var(--cyan);backdrop-filter:blur(14px)}
+.envio .linha{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between;max-width:760px;margin:0 auto}
 .envio span{font-size:14px}
-.envio .btn{border-color:var(--hl)}
-dialog{border:1px solid var(--line);background:var(--surface);color:var(--ink);padding:20px;max-width:min(360px,calc(100vw - 32px))}
+dialog{border-radius:24px;color:var(--ink);padding:22px;max-width:min(360px,calc(100vw - 32px));--h:var(--cyan)}
 dialog[open]{display:flex;flex-direction:column;gap:12px}
-dialog::backdrop{background:rgba(11,22,38,.6)}
+dialog::backdrop{background:rgba(4,6,9,.72);backdrop-filter:blur(4px)}
 [hidden]{display:none!important}
-footer{padding-block:0 40px}
+footer{padding-block:0 48px;display:flex;flex-direction:column;gap:16px}
+
+/* movimento */
+.rv{opacity:0;transform:translateY(18px);transition:opacity .7s ease,transform .7s cubic-bezier(.2,.8,.2,1)}
+.rv.in{opacity:1;transform:none}
+@keyframes pisca{50%{opacity:.35}}
+@keyframes sobe{from{transform:scaleY(.04);opacity:0}}
+@keyframes abre{from{opacity:0;transform:translateY(-6px)}}
+@keyframes pulso{50%{box-shadow:inset 0 1px 0 rgba(var(--h),.7),inset 0 0 34px rgba(var(--h),.2),0 0 44px -8px rgba(var(--h),.8)}}
+.ja .chart .b i{animation:none}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.rv{opacity:1;transform:none}html{scroll-behavior:auto}}
 </style>
 </head>
 <body>
-<header class="topo"><div class="col">
-  <span class="eyebrow" id="atual">@heynego</span>
-  <h1>Central do Felipe</h1>
-  <p>Tudo que a gente está fazendo, em ordem: o que já foi feito, o que gravar agora e o que falta.</p>
-  <div class="prog" id="prog"></div>
-  <span id="sinc" style="font-size:13px;color:var(--brand-soft)"></span>
-</div></header>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="marca" viewBox="0 0 48 48"><path d="M5 40 17.5 8H40l-2.8 7.2H23.4l-2.3 6h11.4l-2.8 7.2H18.3L13.7 40z" fill="#25E3FF"/><path d="M28.6 40 36.4 19.6 40.4 40h-5.2l-.7-4.2-1.6 4.2z" fill="#F2F6FA"/></symbol></svg>
 
 <nav aria-label="Seções"><div class="col">
-  <a href="#agora">Agora</a><a href="#semana">Semana</a><a href="#roteiros">Roteiros</a><a href="#perguntas">Perguntas</a><a href="#caminho">Caminho</a><a href="numeros.html">Números</a>
+  <a class="logo" href="#topo" aria-label="Felipe Avancini"><svg><use href="#marca"/></svg><span>FELIPE AVANCINI</span></a>
+  <div class="links"><a href="#agora">Agora</a><a href="#semana">Semana</a><a href="#roteiros">Roteiros</a><a href="#perguntas">Perguntas</a><a href="#caminho">Caminho</a><a href="numeros.html">Números</a></div>
 </div></nav>
 
+<header class="topo" id="topo"><div class="col">
+  <span class="tag" id="atual">/ CENTRAL ///</span>
+  <h1><span>Ninguém precisa perguntar</span><b>o que falta fazer.</b></h1>
+  <p class="lead">Tudo que a gente está fazendo, em ordem: o que já foi feito, o que gravar agora e o que falta.</p>
+  <span class="live h-cyan" id="sincPill" hidden><i></i><span id="sinc"></span></span>
+  <div class="stats" id="stats"></div>
+  <div><span class="tag">/ os 11 vídeos, um ponto por roteiro ///</span><div class="rail" id="rail"></div></div>
+</div></header>
+
 <main class="col">
-  <section id="agora">
-    <div class="cab"><span class="eyebrow">Comece por aqui</span><h2>O que fazer agora</h2></div>
+  <section id="agora" class="rv">
+    <div class="cab"><span class="tag">/ comece por aqui ///</span><h2>O que fazer agora</h2></div>
     <div id="agoraLista" style="display:flex;flex-direction:column;gap:12px"></div>
-    <details class="card"><summary style="cursor:pointer;font-weight:700">Regras de gravação</summary><ul id="regras" style="margin-top:12px"></ul></details>
+    <details class="card"><summary style="cursor:pointer;font-weight:600">Regras de gravação</summary><ul id="regras" style="margin-top:12px"></ul></details>
   </section>
 
-  <section id="semana">
-    <div class="cab"><span class="eyebrow">Dia e hora de cada post</span><h2>Semana</h2>
+  <section id="semana" class="rv">
+    <div class="cab"><span class="tag">/ dia e hora de cada post ///</span><h2>Semana</h2>
       <p class="small">Os horários aparecem no fuso do teu aparelho. Toca no título pra abrir o roteiro.</p></div>
+    <div class="card bloco"><span class="tag">/ a agenda, colorida pelo estado de cada vídeo ///</span><div class="chart" id="chart"></div>
+      <div class="leg"><span class="h-amber">A gravar</span><span class="h-lime">Gravado</span><span class="h-cyan">Postado</span><span class="h-red">Travado</span></div></div>
     <div class="card bloco" id="roboInfo"></div>
     <div id="semLista" style="display:flex;flex-direction:column;gap:22px"></div>
   </section>
 
-  <section id="roteiros">
-    <div class="cab"><span class="eyebrow">Na ordem de postagem</span><h2>Roteiros</h2>
+  <section id="roteiros" class="rv">
+    <div class="cab"><span class="tag">/ na ordem de postagem ///</span><h2>Roteiros</h2>
       <p class="small">Toca no roteiro pra abrir. O trecho em <mark>amarelo</mark> é você que preenche com o que viveu. Gravou ou postou, marca no fim do roteiro.</p></div>
     <div id="rotLista" style="display:flex;flex-direction:column;gap:10px"></div>
   </section>
 
-  <section id="perguntas">
-    <div class="cab"><span class="eyebrow">Só você sabe responder</span><h2>Perguntas pra você</h2>
+  <section id="perguntas" class="rv">
+    <div class="cab"><span class="tag">/ só você sabe responder ///</span><h2>Perguntas pra você</h2>
       <p class="small">Cada resposta libera um roteiro ou uma decisão. Responde pelo WhatsApp, do jeito que for mais fácil.</p></div>
     <div id="pergLista" style="display:flex;flex-direction:column;gap:10px"></div>
   </section>
 
-  <section id="caminho">
-    <div class="cab"><span class="eyebrow">O plano inteiro</span><h2>Caminho</h2>
+  <section id="caminho" class="rv">
+    <div class="cab"><span class="tag">/ o plano inteiro ///</span><h2>Caminho</h2>
       <p class="small">Quatro fases. A gente só passa pra próxima quando a anterior responder a pergunta dela.</p></div>
     <div id="fases" style="display:flex;flex-direction:column;gap:14px"></div>
     <div class="card bloco"><h3>Como a gente mede esta fase</h3><ul id="medicao"></ul></div>
@@ -200,12 +246,15 @@ footer{padding-block:0 40px}
   </section>
 </main>
 
-<footer class="col"><p class="small"><span id="rodape"></span> Os números de setembro estão em <a href="numeros.html">Números</a>.</p></footer>
+<footer class="col">
+  <a class="logo" href="#topo"><svg><use href="#marca"/></svg><span>FELIPE AVANCINI<small>@HEYNEGO · CENTRAL</small></span></a>
+  <p class="small"><span id="rodape"></span> Os números de setembro estão em <a href="numeros.html">Números</a>.</p>
+</footer>
 
-<dialog id="quem"><h3>Quem está marcando?</h3><p class="small">Só pergunto uma vez neste aparelho. Serve pra mostrar quem marcou cada coisa.</p>
+<dialog id="quem" class="glow"><h3>Quem está marcando?</h3><p class="small">Só pergunto uma vez neste aparelho. Serve pra mostrar quem marcou cada coisa.</p>
 <div class="marcar"><button class="btn cheio" data-quem="Felipe">Felipe</button><button class="btn" data-quem="Matheus">Matheus</button></div></dialog>
 
-<div class="envio" id="envio" hidden><div class="col"><span id="envioTxt"></span><a class="btn cheio" id="envioBtn" target="_blank" rel="noopener">Avisar o Matheus</a></div></div>
+<div class="envio glow" id="envio" hidden><div class="linha"><span id="envioTxt"></span><a class="btn cheio" id="envioBtn" target="_blank" rel="noopener">Avisar o Matheus</a></div></div>
 
 <script src="dados.js"></script>
 <script>
@@ -223,51 +272,52 @@ const assin=m=>m?[m.por?"por "+m.por:"",quando(m)].filter(Boolean).join(", "):""
 const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 const slots=s=>esc(s).replace(/\[CONFIRMAR: ([^\]]+)\]/g,"<mark>você preenche: $1</mark>").replace(/\[X\]/g,"<mark>teu número</mark>");
 const wa=t=>"https://wa.me/?text="+encodeURIComponent(t);
+const pad=n=>String(n).padStart(2,"0");
 const RANK={pronto:0,depende:0,gravado:1,postado:2};
 const ROT={pronto:"Pronto pra gravar",depende:"Depende de você",gravado:"Gravado",postado:"Postado"};
 const stR=r=>{const l=mv("r"+r.n);return l&&RANK[l]>RANK[r.status]?l:r.status};
 const stP=p=>p.s==="feito"||(p.id&&mv(p.id))?"feito":"falta";
 const abertos=new Set();
+let primeira=true;
 
 function topo(){
-  $("atual").textContent="@heynego · atualizado em "+D.atualizado;
-  const t=D.roteiros.length, po=D.roteiros.filter(r=>stR(r)==="postado").length, gr=D.roteiros.filter(r=>stR(r)==="gravado").length;
-  $("prog").innerHTML=`<div class="num"><b>${po}</b> de ${t} vídeos postados${gr?` · ${gr} gravado${gr>1?"s":""} esperando`:""}</div>
-  <div class="trilho" role="img" aria-label="${po} postados e ${gr} gravados de ${t}"><i class="t2" style="width:${po/t*100}%"></i><i class="t1" style="width:${gr/t*100}%"></i></div>
-  <div class="chaves"><span><i style="background:var(--hl)"></i>Postado</span><span><i style="background:var(--brand-soft)"></i>Gravado</span></div>`;
+  $("atual").textContent="/ central · @heynego · atualizado em "+D.atualizado+" ///";
+  const c={postado:0,gravado:0,pronto:0,depende:0}; D.roteiros.forEach(r=>c[stR(r)]++);
+  const S=[["h-cyan",c.postado,"postados"],["h-lime",c.gravado,"gravados, esperando"],["h-amber",c.pronto,"pra gravar"],["h-red",c.depende,"dependem de você"]];
+  $("stats").innerHTML=S.map(s=>`<div class="stat ${s[0]}"><b data-n="${s[1]}">${primeira?0:pad(s[1])}</b><span>${s[2]}</span></div>`).join("");
+  if(primeira){const fim=matchMedia("(prefers-reduced-motion:reduce)").matches;
+    document.querySelectorAll(".stat b").forEach(b=>{const n=+b.dataset.n,t0=performance.now();
+      const passo=t=>{const p=fim?1:Math.min(1,(t-t0)/900);b.textContent=pad(Math.round(n*(1-Math.pow(1-p,3))));if(p<1)requestAnimationFrame(passo)};requestAnimationFrame(passo)})}
+  $("rail").innerHTML=D.roteiros.map(r=>`<a class="nodo st-${stR(r)}" href="#r${r.n}" title="${esc(r.titulo)}: ${ROT[stR(r)]}"><i></i>${pad(r.n)}</a>`).join("");
 }
 
 function agora(){
   const f=D.fases.find(x=>x.estado==="agora");
   const meus=f.passos.filter(p=>stP(p)!=="feito"&&p.quem!=="Matheus").slice(0,3);
-  $("agoraLista").innerHTML=meus.length?meus.map((p,i)=>`<div class="card agora"><span class="n">${i+1}</span>
+  $("agoraLista").innerHTML=meus.length?meus.map((p,i)=>`<div class="card agora ${i?"":"glow h-cyan"}" style="${i?"--h:var(--amber)":""}"><span class="n">${i+1}</span>
     <h3>${esc(p.t)}</h3><p class="small">${p.d?esc(p.d):""}</p>
     <div class="acoes">${p.ir?`<a class="btn cheio" href="${p.ir}">Abrir</a>`:""}<button class="btn" data-passo="${p.id}" aria-pressed="false">Já fiz</button></div></div>`).join("")
     :`<div class="card"><p>Tudo em dia desta fase. Fala com o Matheus pra abrir a próxima.</p></div>`;
   $("regras").innerHTML=D.regras.map(r=>`<li>${esc(r)}</li>`).join("");
 }
 
-function roteiros(){
-  $("rotLista").innerHTML=D.roteiros.map(r=>{const s=stR(r), m=M["r"+r.n];
-    return `<details class="rot" id="r${r.n}" data-n="${r.n}" ${abertos.has(r.n)?"open":""}><summary>
-      <span class="n">${String(r.n).padStart(2,"0")}</span><span class="tit">${esc(r.titulo)}</span>
-      <span class="tags"><span class="pill ${s}">${ROT[s]}</span><span class="tipo">${esc(r.tipo)} · <span class="mono">${esc(r.duracao)}</span></span></span></summary>
-    <div class="corpo">
-      ${r.status==="depende"&&s==="depende"?`<div class="aviso">${esc(r.motivo)} Responde em <a href="#perguntas">Perguntas</a>.</div>`:""}
-      <div class="meta"><div><span class="lab">Onde gravar</span>${esc(r.onde)}</div><div><span class="lab">Texto de capa</span>${esc(r.capa)}</div><div><span class="lab">Tamanho</span><span class="mono">${esc(r.duracao)} · cerca de ${r.palavras} palavras</span></div></div>
-      <div class="bloco"><span class="lab">O que falar</span><div>${r.cenas.map(c=>`<div class="cena"><span class="t">${esc(c.t)}</span><span class="fala">${slots(c.fala)}</span><span class="tela">Na tela: ${slots(c.tela)}</span></div>`).join("")}</div></div>
-      ${r.confirmar.length?`<div class="bloco"><span class="lab">Você preenche</span><ul>${r.confirmar.map(c=>`<li>${esc(c)}</li>`).join("")}</ul></div>`:""}
-      <div class="bloco"><span class="lab">Outras aberturas</span><ul>${r.ganchos.map(g=>`<li>${slots(g)}</li>`).join("")}</ul></div>
-      <div class="bloco"><span class="lab">Legenda</span><div class="caixa"><span>${esc(r.legenda)}</span><span class="tagsh">${esc(D.hashtagsBase+" "+r.hashtags)}</span><div><button class="btn" data-copia="${r.n}">Copiar legenda</button></div></div></div>
-      ${r.conta?`<p class="small">Vídeo de contagem: no mesmo dia, sobe a enquete GRAVO ou QUERO nos stories.</p>`:""}
-      <div class="marcar"><button class="btn" data-rot="${r.n}" data-v="gravado" aria-pressed="${RANK[s]>=1}">Gravei</button><button class="btn" data-rot="${r.n}" data-v="postado" aria-pressed="${s==="postado"}">Postei</button></div>
-      ${m&&assin(m)?`<p class="small">Marcado como ${m.v} ${esc(assin(m))}.</p>`:""}
-    </div></details>`}).join("");
-  document.querySelectorAll("details.rot").forEach(d=>d.addEventListener("toggle",()=>{const n=+d.dataset.n;d.open?abertos.add(n):abertos.delete(n)}));
-}
-
 function semana(){
-  const R=D.robo||{}, ag=(D.agenda||[]).slice().sort((a,b)=>Date.parse(a.data)-Date.parse(b.data)), agora=Date.now();
+  const R=D.robo||{}, ag=(D.agenda||[]).slice().sort((a,b)=>Date.parse(a.data)-Date.parse(b.data)), agoraT=Date.now();
+  const estado=it=>{const t=Date.parse(it.data), r=it.roteiro?D.roteiros.find(x=>x.n===it.roteiro):null;
+    if(r){const s=stR(r);
+      if(s==="postado")return["postado","Postado"];
+      if(mv("erro-"+it.id))return["depende","O robô falhou"];
+      if(mv("arq-"+it.id))return["gravado","Vídeo na pasta"];
+      if(s==="gravado")return["gravado",R.ligado?"Gravado: falta subir na pasta":"Gravado"];
+      if(t<agoraT)return["depende","Atrasado"];
+      if(s==="depende")return["depende","Depende de você"];
+      return["pronto","Falta gravar"]}
+    if(mv("pub-"+it.id)==="postado")return["postado","Postado"];
+    if(mv("erro-"+it.id))return["depende","O robô falhou"];
+    if(it.aprovado!==true)return["depende","Falta confirmar os fatos"];
+    return["pronto","Aprovado"]};
+  $("chart").innerHTML=ag.map((it,i)=>{const r=it.roteiro?D.roteiros.find(x=>x.n===it.roteiro):null, [cls,txt]=estado(it), h=r?Math.round(parseInt(r.duracao)/45*100):62;
+    return `<a class="b st-${cls}" ${r?`href="#r${r.n}"`:""} title="${esc(r?r.titulo:it.titulo)}: ${txt}"><i style="height:${h}%;animation-delay:${i*45}ms"></i><span>${new Date(Date.parse(it.data)).getDate()}</span></a>`}).join("");
   $("roboInfo").innerHTML=(R.ligado
     ?`<h3>O Instagram posta sozinho</h3><p class="small">Na hora marcada, o robô publica o vídeo que estiver na pasta, com a legenda do roteiro. O nome do arquivo começa com o número do roteiro: <span class="mono">01.mp4</span>, <span class="mono">02.mp4</span>. TikTok e YouTube: agenda pelo aplicativo e marca aqui.</p>`
     :`<h3>Por enquanto, postar pelo aplicativo</h3><p class="small">O robô que posta sozinho no Instagram ainda está desligado. Até ligar: posta no horário, copia a legenda do roteiro e marca Postei. TikTok e YouTube: posta ou agenda pelo aplicativo e marca aqui.</p>`)
@@ -275,34 +325,39 @@ function semana(){
   const seg=d=>{const x=new Date(d);x.setHours(0,0,0,0);x.setDate(x.getDate()-((x.getDay()+6)%7));return x.getTime()};
   const dm=d=>new Date(d).toLocaleDateString("pt-BR",{day:"2-digit",month:"2-digit"});
   const grupos=new Map(); ag.forEach(it=>{const k=seg(Date.parse(it.data));if(!grupos.has(k))grupos.set(k,[]);grupos.get(k).push(it)});
-  $("semLista").innerHTML=[...grupos].map(([k,its])=>`<div class="sem"><span class="lab">Semana de ${dm(k)} a ${dm(k+6*864e5)}</span>${its.map(it=>{
-    const t=Date.parse(it.data), d=new Date(t), r=it.roteiro?D.roteiros.find(x=>x.n===it.roteiro):null;
-    const hoje=new Date(agora).toDateString()===d.toDateString();
-    let cls,txt;
-    if(r){const s=stR(r);
-      if(s==="postado"){cls="postado";txt="Postado"}
-      else if(mv("erro-"+it.id)){cls="depende";txt="O robô falhou"}
-      else if(mv("arq-"+it.id)){cls="gravado";txt="Vídeo na pasta"}
-      else if(s==="gravado"){cls="gravado";txt=R.ligado?"Gravado: falta subir na pasta":"Gravado"}
-      else if(t<agora){cls="depende";txt="Atrasado"}
-      else if(s==="depende"){cls="depende";txt="Depende de você"}
-      else{cls="pronto";txt="Falta gravar"}}
-    else{
-      if(mv("pub-"+it.id)==="postado"){cls="postado";txt="Postado"}
-      else if(mv("erro-"+it.id)){cls="depende";txt="O robô falhou"}
-      else if(it.aprovado!==true){cls="depende";txt="Falta confirmar os fatos"}
-      else{cls="pronto";txt="Aprovado"}}
-    return `<div class="card ag${hoje?" hoje":""}"><div class="dia"><b>${d.toLocaleDateString("pt-BR",{weekday:"short"}).replace(".","").toUpperCase()}</b><span>${dm(t)}</span><span>${d.toLocaleTimeString("pt-BR",{hour:"2-digit",minute:"2-digit"})}</span></div>
-      <div class="agc">${r?`<a class="tit" href="#r${r.n}">${esc(r.titulo)}</a>`:`<span class="tit" style="font-family:var(--display);font-weight:800;font-size:17px;line-height:1.2">${esc(it.titulo)}</span>`}
-      <div class="tags"><span class="pill ${cls}">${txt}</span><span>${r?`Reel · roteiro <span class="mono">${String(r.n).padStart(2,"0")}</span>`:`Carrossel · <span class="mono">${it.slides}</span> slides`}</span></div>
+  $("semLista").innerHTML=[...grupos].map(([k,its])=>`<div class="sem"><span class="lab">/ semana de ${dm(k)} a ${dm(k+6*864e5)} ///</span>${its.map(it=>{
+    const t=Date.parse(it.data), d=new Date(t), r=it.roteiro?D.roteiros.find(x=>x.n===it.roteiro):null, [cls,txt]=estado(it);
+    const hoje=new Date(agoraT).toDateString()===d.toDateString();
+    return `<div class="card ag st-${cls}${hoje?" glow hoje":""}"><div class="dia"><b>${d.toLocaleDateString("pt-BR",{weekday:"short"}).replace(".","").toUpperCase()}</b><span>${dm(t)}</span><span>${d.toLocaleTimeString("pt-BR",{hour:"2-digit",minute:"2-digit"})}</span></div>
+      <div class="agc">${r?`<a class="tit" href="#r${r.n}">${esc(r.titulo)}</a>`:`<span class="tit">${esc(it.titulo)}</span>`}
+      <div class="tags"><span class="pill ${cls}">${txt}</span><span>${r?`Reel · roteiro <span class="mono">${pad(r.n)}</span>`:`Carrossel · <span class="mono">${it.slides}</span> slides`}</span></div>
       ${mv("erro-"+it.id)?`<div><button class="btn mini" data-limpa="erro-${it.id}">Tentar de novo</button></div>`:""}
       ${r?`<div class="marcar"><button class="btn mini" data-passo="tt-${it.id}" aria-pressed="${!!mv("tt-"+it.id)}">TikTok</button><button class="btn mini" data-passo="yt-${it.id}" aria-pressed="${!!mv("yt-"+it.id)}">YouTube</button></div>`:""}
       </div></div>`}).join("")}</div>`).join("");
 }
 
+function roteiros(){
+  $("rotLista").innerHTML=D.roteiros.map(r=>{const s=stR(r), m=M["r"+r.n];
+    return `<details class="rot card st-${s}${RANK[s]?" glow":""}" style="padding:0" id="r${r.n}" data-n="${r.n}" ${abertos.has(r.n)?"open":""}><summary>
+      <span class="n">${pad(r.n)}</span><span class="tit">${esc(r.titulo)}</span>
+      <span class="tags"><span class="pill ${s}">${ROT[s]}</span><span class="tipo">${esc(r.tipo)} · <span class="mono">${esc(r.duracao)}</span></span></span></summary>
+    <div class="corpo">
+      ${r.status==="depende"&&s==="depende"?`<div class="aviso">${esc(r.motivo)} Responde em <a href="#perguntas">Perguntas</a>.</div>`:""}
+      <div class="meta"><div><span class="lab">Onde gravar</span>${esc(r.onde)}</div><div><span class="lab">Texto de capa</span>${esc(r.capa)}</div><div><span class="lab">Tamanho</span><span>${esc(r.duracao)} · cerca de ${r.palavras} palavras</span></div></div>
+      <div class="bloco"><span class="lab">/ o que falar ///</span><div>${r.cenas.map(c=>`<div class="cena"><span class="t">${esc(c.t)}</span><span class="fala">${slots(c.fala)}</span><span class="tela">Na tela: ${slots(c.tela)}</span></div>`).join("")}</div></div>
+      ${r.confirmar.length?`<div class="bloco"><span class="lab">/ você preenche ///</span><ul>${r.confirmar.map(c=>`<li>${esc(c)}</li>`).join("")}</ul></div>`:""}
+      <div class="bloco"><span class="lab">/ outras aberturas ///</span><ul>${r.ganchos.map(g=>`<li>${slots(g)}</li>`).join("")}</ul></div>
+      <div class="bloco"><span class="lab">/ legenda ///</span><div class="caixa"><span>${esc(r.legenda)}</span><span class="tagsh">${esc(D.hashtagsBase+" "+r.hashtags)}</span><div><button class="btn mini" data-copia="${r.n}">Copiar legenda</button></div></div></div>
+      ${r.conta?`<p class="small">Vídeo de contagem: no mesmo dia, sobe a enquete GRAVO ou QUERO nos stories.</p>`:""}
+      <div class="marcar"><button class="btn" data-rot="${r.n}" data-v="gravado" aria-pressed="${RANK[s]>=1}">Gravei</button><button class="btn" data-rot="${r.n}" data-v="postado" aria-pressed="${s==="postado"}">Postei</button></div>
+      ${m&&assin(m)?`<p class="small">Marcado como ${m.v} ${esc(assin(m))}.</p>`:""}
+    </div></details>`}).join("");
+  document.querySelectorAll("details.rot").forEach(d=>d.addEventListener("toggle",()=>{const n=+d.dataset.n;d.open?abertos.add(n):abertos.delete(n)}));
+}
+
 function perguntas(){
   const ab=D.perguntas.filter(q=>q.s!=="respondida");
-  $("pergLista").innerHTML=ab.map(q=>`<div class="card perg"><p class="q">${esc(q.p)}</p>
+  $("pergLista").innerHTML=ab.map(q=>`<div class="card perg${mv(q.id)?" glow h-lime":""}"><p class="q">${esc(q.p)}</p>
     ${q.opcoes?`<ul>${q.opcoes.map(o=>`<li>${esc(o)}</li>`).join("")}</ul>`:""}
     <p class="small">${esc(q.porque)}</p>
     <div class="marcar"><a class="btn cheio" target="_blank" rel="noopener" href="${wa("Resposta pra Central\n"+q.p+"\n\n")}">Responder no WhatsApp</a><button class="btn" data-passo="${q.id}" aria-pressed="${!!mv(q.id)}">Já respondi</button></div>
@@ -310,14 +365,14 @@ function perguntas(){
 }
 
 function caminho(){
-  const SELO={feito:"Concluída",agora:"Agora",depois:"Depois"};
-  $("fases").innerHTML=D.fases.map(f=>`<div class="card fase"><div class="fcab"><span class="fn">${f.n}</span><h3>${esc(f.nome)}</h3><span class="selo ${f.estado}">${SELO[f.estado]}</span></div>
+  const SELO={feito:["gravado","Concluída"],agora:["postado","Agora"],depois:["quem","Depois"]};
+  $("fases").innerHTML=D.fases.map(f=>`<div class="card fase ${f.estado}${f.estado==="agora"?" glow":""}"><div class="fcab"><span class="fn">${pad(f.n)}</span><h3>${esc(f.nome)}</h3><span class="pill ${SELO[f.estado][0]}">${SELO[f.estado][1]}</span></div>
     <p class="small">${esc(f.resumo)}</p>
     <div>${f.passos.map(p=>{const s=stP(p), pode=p.id&&p.s!=="feito";
       return `<div class="passo ${s}">${pode?`<button class="ck" data-passo="${p.id}" aria-pressed="${s==="feito"}" aria-label="Marcar como feito: ${esc(p.t)}">✓</button>`:`<span class="ck" aria-hidden="true">✓</span>`}
       <span class="pt">${p.link?`<a href="${p.link}">${esc(p.t)}</a>`:esc(p.t)}</span><span class="pill quem">${esc(p.quem)}</span>${p.d&&s!=="feito"?`<span class="pd">${esc(p.d)}</span>`:""}${pode&&s==="feito"&&assin(M[p.id])?`<span class="pd">Marcado ${esc(assin(M[p.id]))}</span>`:""}</div>`}).join("")}</div></div>`).join("");
   $("medicao").innerHTML=D.medicao.map(m=>`<li>${esc(m)}</li>`).join("");
-  $("carr").innerHTML=D.carrosseis.map(c=>`<div class="passo" style="grid-template-columns:1fr"><span><b>${esc(c.t)}</b></span><span class="pd" style="grid-column:1">${esc(c.s)}</span></div>`).join("");
+  $("carr").innerHTML=D.carrosseis.map(c=>`<div class="passo" style="grid-template-columns:1fr"><span><b style="font-weight:600">${esc(c.t)}</b></span><span class="pd" style="grid-column:1">${esc(c.s)}</span></div>`).join("");
   $("fila").innerHTML=D.fila.map(m=>`<li>${esc(m)}</li>`).join("");
 }
 
@@ -336,7 +391,7 @@ function envio(){
   $("envioBtn").href=wa(t);
 }
 
-function tudo(){topo();agora();semana();roteiros();perguntas();caminho();envio()}
+function tudo(){topo();agora();semana();roteiros();perguntas();caminho();envio();primeira=false;requestAnimationFrame(()=>document.body.classList.add("ja"))}
 /* link interno para um roteiro (ex.: vindo da Semana) abre o cartão */
 addEventListener("hashchange",()=>{const h=/^#r(\d+)$/.exec(location.hash);if(h){abertos.add(+h[1]);const d=$("r"+h[1]);if(d){d.open=true;d.scrollIntoView()}}});
 
@@ -369,7 +424,8 @@ function carregar(){
   return fetch(URLM).then(r=>{if(!r.ok)throw 0;return r.json()}).then(d=>{recebe("put",{path:"/",data:d});estado(true);enviar()}).catch(()=>estado(false));
 }
 function estado(ok){
-  $("sinc").textContent=!SYNC?"":ok?"Sincronizado: o que um marca, o outro vê na hora.":"Sem conexão agora. O que você marcar sobe quando a internet voltar.";
+  const p=$("sincPill"); p.hidden=!SYNC; p.className="live "+(ok?"h-cyan":"h-red");
+  $("sinc").textContent=ok?"Ao vivo · os dois veem igual":"Sem conexão · sobe quando voltar";
   $("rodape").textContent=SYNC?"As marcações desta página são compartilhadas: o que o Felipe ou o Matheus marcam aparece para os dois.":"O que você marca aqui fica salvo neste aparelho. Toca em \"Avisar o Matheus\" pra ele atualizar a página e ficar igual pros dois.";
 }
 function ligar(){
@@ -398,10 +454,14 @@ document.addEventListener("click",e=>{
     const ok=()=>{b.textContent="Copiado";setTimeout(()=>b.textContent="Copiar legenda",1600)};
     if(navigator.clipboard)navigator.clipboard.writeText(t).then(ok,()=>{}); else{const a=document.createElement("textarea");a.value=t;document.body.appendChild(a);a.select();try{document.execCommand("copy");ok()}catch(x){}a.remove()}}
 });
+
 /* link direto para um roteiro: .../#r3 abre o roteiro 3 */
 const hr=/^#r(\d+)$/.exec(location.hash); if(hr)abertos.add(+hr[1]);
 tudo(); ligar();
-if(location.hash){const el=document.querySelector(location.hash);if(el)el.scrollIntoView()}
+/* seções entram suavemente ao rolar */
+if("IntersectionObserver" in window){const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add("in");io.unobserve(e.target)}}),{rootMargin:"0px 0px -8% 0px"});document.querySelectorAll(".rv").forEach(s=>io.observe(s))}
+else document.querySelectorAll(".rv").forEach(s=>s.classList.add("in"));
+if(location.hash){const el=document.querySelector(location.hash);if(el){document.querySelectorAll(".rv").forEach(s=>s.classList.add("in"));el.scrollIntoView()}}
 </script>
 </body>
 </html>
