@@ -11,6 +11,19 @@
           "em": { ".validate": "newData.isNumber()" },
           "$outro": { ".validate": false }
         }
+      },
+      "notas": {
+        ".read": true,
+        "$id": {
+          ".write": "$id.matches(/^n[a-z0-9]{6,24}$/)",
+          ".validate": "newData.hasChildren(['t', 'tipo', 'em'])",
+          "t": { ".validate": "newData.isString() && newData.val().length > 0 && newData.val().length <= 2000" },
+          "tipo": { ".validate": "newData.val() === 'ideia' || newData.val() === 'feedback'" },
+          "por": { ".validate": "newData.isString() && newData.val().length < 20" },
+          "em": { ".validate": "newData.isNumber()" },
+          "ok": { ".validate": "newData.isBoolean()" },
+          "$outro": { ".validate": false }
+        }
       }
     }
   }

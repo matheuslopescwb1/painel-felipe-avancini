@@ -159,6 +159,15 @@ li::marker{color:var(--ink3)}
 .perg{display:flex;flex-direction:column;gap:10px}
 .perg .q{font-weight:500;font-size:18px;line-height:1.3}
 
+/* notas */
+textarea{font:inherit;font-size:16px;color:var(--ink);background:rgba(var(--neutral),.04);border:1px solid rgba(var(--neutral),.2);border-radius:16px;padding:12px 14px;width:100%;resize:vertical;min-height:96px;transition:border-color .2s,box-shadow .2s}
+textarea::placeholder{color:var(--ink3)}
+textarea:focus{outline:none;border-color:rgb(var(--cyan));box-shadow:0 0 0 3px rgba(var(--cyan),.18)}
+.nota{display:flex;flex-direction:column;gap:10px}
+.nota .ntxt{font-size:16.5px;white-space:pre-wrap;overflow-wrap:anywhere}
+.nota .tags{display:flex;flex-wrap:wrap;gap:6px 10px;align-items:center}
+.nota.feita .ntxt{color:var(--ink3);text-decoration:line-through;text-decoration-thickness:1px}
+
 /* caminho */
 .fase{display:flex;flex-direction:column;gap:10px}
 .fase .fcab{display:flex;flex-wrap:wrap;gap:8px 12px;align-items:center}
@@ -196,7 +205,7 @@ footer{padding-block:0 48px;display:flex;flex-direction:column;gap:16px}
 
 <nav aria-label="Seções"><div class="col">
   <a class="logo" href="#topo" aria-label="Felipe Avancini"><svg><use href="#marca"/></svg><span>FELIPE AVANCINI</span></a>
-  <div class="links"><a href="#agora">Agora</a><a href="#semana">Semana</a><a href="#roteiros">Roteiros</a><a href="#perguntas">Perguntas</a><a href="#caminho">Caminho</a><a href="numeros.html">Números</a></div>
+  <div class="links"><a href="#agora">Agora</a><a href="#semana">Semana</a><a href="#roteiros">Roteiros</a><a href="#perguntas">Perguntas</a><a href="#notas">Notas</a><a href="#caminho">Caminho</a><a href="numeros.html">Números</a></div>
 </div></nav>
 
 <header class="topo" id="topo"><div class="col">
@@ -234,6 +243,19 @@ footer{padding-block:0 48px;display:flex;flex-direction:column;gap:16px}
     <div class="cab"><span class="tag">/ só você sabe responder ///</span><h2>Perguntas pra você</h2>
       <p class="small">Cada resposta libera um roteiro ou uma decisão. Responde pelo WhatsApp, do jeito que for mais fácil.</p></div>
     <div id="pergLista" style="display:flex;flex-direction:column;gap:10px"></div>
+  </section>
+
+  <section id="notas" class="rv">
+    <div class="cab"><span class="tag">/ ideias e feedbacks ///</span><h2>Notas</h2>
+      <p class="small">Anota aqui uma ideia de vídeo ou um feedback sobre o que foi feito. Os dois veem. Não escreve senha nem valor que não possa ser público: quem tiver o link da página consegue ler.</p></div>
+    <div class="card glow h-cyan bloco">
+      <div class="marcar" role="group" aria-label="Tipo da nota"><button class="btn mini" data-ntipo="ideia" aria-pressed="true">Ideia</button><button class="btn mini" data-ntipo="feedback" aria-pressed="false">Feedback</button></div>
+      <label class="lab" for="notaTxt">/ escreve a nota ///</label>
+      <textarea id="notaTxt" rows="4" maxlength="2000" placeholder="Ex.: vídeo mostrando quanto custou a cama do apartamento novo"></textarea>
+      <div class="marcar" style="align-items:center"><button class="btn cheio" id="notaSalvar">Salvar nota</button><span class="small" id="notaMsg" role="status"></span></div>
+    </div>
+    <div class="marcar" role="group" aria-label="Filtrar notas" id="notaFiltros"></div>
+    <div id="notaLista" style="display:flex;flex-direction:column;gap:10px"></div>
   </section>
 
   <section id="caminho" class="rv">
@@ -364,6 +386,52 @@ function perguntas(){
     ${mv(q.id)?`<p class="small">Respondida ${esc(assin(M[q.id]))}.</p>`:""}</div>`).join("")||`<div class="card"><p>Nenhuma pergunta em aberto.</p></div>`;
 }
 
+/* ---- notas: N[id]={t,tipo,por,em,ok}, em central/notas no banco (ou só neste aparelho sem banco) ---- */
+const URLN=SYNC+"/central/notas";
+let N={},NTIPO="ideia",NFILTRO="todas",notasBloq=false;
+try{N=JSON.parse(localStorage.getItem(LS+"-notas")||"{}")||{}}catch(e){}
+const salvarN=()=>{try{localStorage.setItem(LS+"-notas",JSON.stringify(N))}catch(e){}};
+const jsonReq=(url,metodo,corpo)=>fetch(url,{method:metodo,headers:{"Content-Type":"application/json"},body:corpo===undefined?undefined:JSON.stringify(corpo)}).then(r=>{if(!r.ok)throw r.status});
+function notas(){
+  const todas=Object.entries(N).filter(([,n])=>n&&n.t).sort((a,b)=>(b[1].em||0)-(a[1].em||0));
+  const cont={todas:todas.length,ideia:todas.filter(x=>x[1].tipo==="ideia").length,feedback:todas.filter(x=>x[1].tipo==="feedback").length};
+  $("notaFiltros").innerHTML=[["todas","Todas"],["ideia","Ideias"],["feedback","Feedbacks"]].map(f=>`<button class="btn mini" data-nfiltro="${f[0]}" aria-pressed="${NFILTRO===f[0]}">${f[1]} <span class="mono">${cont[f[0]]}</span></button>`).join("");
+  document.querySelectorAll("[data-ntipo]").forEach(b=>b.setAttribute("aria-pressed",b.dataset.ntipo===NTIPO));
+  const vis=todas.filter(x=>NFILTRO==="todas"||x[1].tipo===NFILTRO);
+  $("notaLista").innerHTML=vis.map(([id,n])=>`<div class="card nota ${n.tipo==="feedback"?"h-cyan":"h-amber"}${n.ok?" feita":""}">
+    <div class="tags"><span class="pill">${n.tipo==="feedback"?"Feedback":"Ideia"}</span><span class="small">${esc(assin(n))}</span></div>
+    <p class="ntxt">${esc(n.t)}</p>
+    <div class="marcar"><button class="btn mini" data-nok="${id}" aria-pressed="${!!n.ok}">${n.tipo==="feedback"?"Resolvido":"Aproveitada"}</button><button class="btn mini" data-ndel="${id}">Apagar</button></div></div>`).join("")
+    ||`<div class="card"><p class="small">${notasBloq?"As notas ainda não estão ligadas no banco. Falta o Matheus atualizar as regras.":"Nenhuma nota ainda. A primeira ideia entra aqui."}</p></div>`;
+}
+function salvarNota(){
+  const ta=$("notaTxt"), t=ta.value.trim(), msg=$("notaMsg"); if(!t){ta.focus();return}
+  quem(()=>{
+    const id="n"+Date.now().toString(36)+Math.random().toString(36).slice(2,6), n={t:t.slice(0,2000),tipo:NTIPO,por:QUEM,em:Date.now(),ok:false};
+    const fim=()=>{N[id]=n;salvarN();ta.value="";msg.textContent="Salva.";setTimeout(()=>{if(msg.textContent==="Salva.")msg.textContent=""},2000);notas()};
+    if(!SYNC)return fim();
+    msg.textContent="Salvando…";
+    jsonReq(`${URLN}/${id}.json`,"PUT",n).then(fim).catch(e=>{msg.textContent=e===401||e===403?"O banco ainda não aceita notas. Falta o Matheus atualizar as regras.":"Não salvou. Confere a internet e tenta de novo."});
+  });
+}
+function recebeN(tipo,msg){
+  const p=msg.path, d=msg.data; notasBloq=false;
+  if(p==="/"){ if(tipo==="put")N={}; Object.entries(d||{}).forEach(([k,v])=>{if(v==null)delete N[k]; else N[k]=v}); }
+  else{ const ps=p.slice(1).split("/");
+    if(ps.length===1){ if(d==null)delete N[ps[0]]; else N[ps[0]]=tipo==="patch"?{...(N[ps[0]]||{}),...d}:d }
+    else if(ps.length===2&&N[ps[0]]){ if(d==null)delete N[ps[0]][ps[1]]; else N[ps[0]][ps[1]]=d } }
+  salvarN(); notas();
+}
+function ligarNotas(){
+  if(!SYNC)return;
+  const pega=()=>fetch(URLN+".json").then(r=>{if(!r.ok)throw r.status;return r.json()}).then(d=>recebeN("put",{path:"/",data:d})).catch(e=>{if(e===401||e===403){notasBloq=true;notas()}});
+  if(!window.EventSource){pega();setInterval(pega,20000);return}
+  const es=new EventSource(URLN+".json"); let veio=false;
+  es.addEventListener("put",e=>{veio=true;recebeN("put",JSON.parse(e.data))});
+  es.addEventListener("patch",e=>{veio=true;recebeN("patch",JSON.parse(e.data))});
+  es.onerror=()=>{if(!veio)pega()};
+}
+
 function caminho(){
   const SELO={feito:["gravado","Concluída"],agora:["postado","Agora"],depois:["quem","Depois"]};
   $("fases").innerHTML=D.fases.map(f=>`<div class="card fase ${f.estado}${f.estado==="agora"?" glow":""}"><div class="fcab"><span class="fn">${pad(f.n)}</span><h3>${esc(f.nome)}</h3><span class="pill ${SELO[f.estado][0]}">${SELO[f.estado][1]}</span></div>
@@ -391,7 +459,7 @@ function envio(){
   $("envioBtn").href=wa(t);
 }
 
-function tudo(){topo();agora();semana();roteiros();perguntas();caminho();envio();primeira=false;requestAnimationFrame(()=>document.body.classList.add("ja"))}
+function tudo(){topo();agora();semana();roteiros();perguntas();notas();caminho();envio();primeira=false;requestAnimationFrame(()=>document.body.classList.add("ja"))}
 /* link interno para um roteiro (ex.: vindo da Semana) abre o cartão */
 addEventListener("hashchange",()=>{const h=/^#r(\d+)$/.exec(location.hash);if(h){abertos.add(+h[1]);const d=$("r"+h[1]);if(d){d.open=true;d.scrollIntoView()}}});
 
@@ -444,6 +512,14 @@ function quem(cb){ if(QUEM||!SYNC||!$("quem").showModal)return cb(); depois=cb; 
 document.addEventListener("click",e=>{
   const q=e.target.closest("[data-quem]");
   if(q){QUEM=q.dataset.quem; try{localStorage.setItem("central-quem",QUEM)}catch(x){} $("quem").close(); if(depois){const f=depois;depois=null;f()} return}
+  const nb=e.target.closest("#notaSalvar,[data-ntipo],[data-nfiltro],[data-nok],[data-ndel]");
+  if(nb){
+    if(nb.id==="notaSalvar")salvarNota();
+    else if(nb.dataset.ntipo){NTIPO=nb.dataset.ntipo;notas()}
+    else if(nb.dataset.nfiltro){NFILTRO=nb.dataset.nfiltro;notas()}
+    else if(nb.dataset.nok){const id=nb.dataset.nok,n=N[id];if(!n)return;n.ok=!n.ok;salvarN();notas();if(SYNC)jsonReq(`${URLN}/${id}.json`,"PATCH",{ok:n.ok}).catch(()=>{n.ok=!n.ok;salvarN();notas()})}
+    else if(nb.dataset.ndel){const id=nb.dataset.ndel;if(!N[id]||!confirm("Apagar esta nota para os dois?"))return;const guard=N[id];delete N[id];salvarN();notas();if(SYNC)jsonReq(`${URLN}/${id}.json`,"DELETE").catch(()=>{N[id]=guard;salvarN();notas()})}
+    return}
   const b=e.target.closest("[data-rot],[data-passo],[data-copia],[data-limpa]"); if(!b)return;
   if(b.dataset.limpa){quem(()=>marca(b.dataset.limpa,null))}
   else if(b.dataset.rot){const k="r"+b.dataset.rot,v=b.dataset.v,r=D.roteiros.find(x=>x.n==b.dataset.rot),s=stR(r);
@@ -457,7 +533,7 @@ document.addEventListener("click",e=>{
 
 /* link direto para um roteiro: .../#r3 abre o roteiro 3 */
 const hr=/^#r(\d+)$/.exec(location.hash); if(hr)abertos.add(+hr[1]);
-tudo(); ligar();
+tudo(); ligar(); ligarNotas();
 /* seções entram suavemente ao rolar */
 if("IntersectionObserver" in window){const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add("in");io.unobserve(e.target)}}),{rootMargin:"0px 0px -8% 0px"});document.querySelectorAll(".rv").forEach(s=>io.observe(s))}
 else document.querySelectorAll(".rv").forEach(s=>s.classList.add("in"));
