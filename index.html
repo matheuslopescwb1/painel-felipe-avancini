@@ -109,6 +109,18 @@ mark{background:var(--mark);color:var(--mark-ink);padding:1px 5px;font-weight:60
 ul{margin:0;padding-left:18px;display:flex;flex-direction:column;gap:5px}
 .marcar{display:flex;flex-wrap:wrap;gap:8px}
 
+/* semana */
+.sem{display:flex;flex-direction:column;gap:10px}
+.ag{display:grid;grid-template-columns:62px 1fr;gap:4px 14px;align-items:start}
+.ag .dia{display:flex;flex-direction:column;gap:1px;font-family:var(--mono);font-size:13px;color:var(--ink2);border-right:1px dotted var(--ink2);padding-right:10px;min-height:100%}
+.ag .dia b{font-size:15px;color:var(--ink);letter-spacing:.06em}
+.ag .agc{display:flex;flex-direction:column;gap:8px;min-width:0}
+.ag a.tit{font-family:var(--display);font-weight:800;font-size:17px;line-height:1.2;text-decoration:none}
+.ag a.tit:hover{text-decoration:underline}
+.ag .tags{display:flex;flex-wrap:wrap;gap:6px;align-items:center;font-size:13px;color:var(--ink2)}
+.ag.hoje{border-color:var(--hl);border-width:2px}
+.btn.mini{min-height:34px;padding:5px 10px;font-size:13px}
+
 /* perguntas */
 .perg{display:flex;flex-direction:column;gap:8px}
 .perg .q{font-weight:600;font-size:17px;line-height:1.35}
@@ -149,7 +161,7 @@ footer{padding-block:0 40px}
 </div></header>
 
 <nav aria-label="Seções"><div class="col">
-  <a href="#agora">Agora</a><a href="#roteiros">Roteiros</a><a href="#perguntas">Perguntas</a><a href="#caminho">Caminho</a><a href="numeros.html">Números</a>
+  <a href="#agora">Agora</a><a href="#semana">Semana</a><a href="#roteiros">Roteiros</a><a href="#perguntas">Perguntas</a><a href="#caminho">Caminho</a><a href="numeros.html">Números</a>
 </div></nav>
 
 <main class="col">
@@ -157,6 +169,13 @@ footer{padding-block:0 40px}
     <div class="cab"><span class="eyebrow">Comece por aqui</span><h2>O que fazer agora</h2></div>
     <div id="agoraLista" style="display:flex;flex-direction:column;gap:12px"></div>
     <details class="card"><summary style="cursor:pointer;font-weight:700">Regras de gravação</summary><ul id="regras" style="margin-top:12px"></ul></details>
+  </section>
+
+  <section id="semana">
+    <div class="cab"><span class="eyebrow">Dia e hora de cada post</span><h2>Semana</h2>
+      <p class="small">Os horários aparecem no fuso do teu aparelho. Toca no título pra abrir o roteiro.</p></div>
+    <div class="card bloco" id="roboInfo"></div>
+    <div id="semLista" style="display:flex;flex-direction:column;gap:22px"></div>
   </section>
 
   <section id="roteiros">
@@ -247,6 +266,40 @@ function roteiros(){
   document.querySelectorAll("details.rot").forEach(d=>d.addEventListener("toggle",()=>{const n=+d.dataset.n;d.open?abertos.add(n):abertos.delete(n)}));
 }
 
+function semana(){
+  const R=D.robo||{}, ag=(D.agenda||[]).slice().sort((a,b)=>Date.parse(a.data)-Date.parse(b.data)), agora=Date.now();
+  $("roboInfo").innerHTML=(R.ligado
+    ?`<h3>O Instagram posta sozinho</h3><p class="small">Na hora marcada, o robô publica o vídeo que estiver na pasta, com a legenda do roteiro. O nome do arquivo começa com o número do roteiro: <span class="mono">01.mp4</span>, <span class="mono">02.mp4</span>. TikTok e YouTube: agenda pelo aplicativo e marca aqui.</p>`
+    :`<h3>Por enquanto, postar pelo aplicativo</h3><p class="small">O robô que posta sozinho no Instagram ainda está desligado. Até ligar: posta no horário, copia a legenda do roteiro e marca Postei. TikTok e YouTube: posta ou agenda pelo aplicativo e marca aqui.</p>`)
+    +(R.pastaId?`<div><a class="btn cheio" target="_blank" rel="noopener" href="https://drive.google.com/drive/folders/${esc(R.pastaId)}">Abrir a pasta dos vídeos</a></div>`:"");
+  const seg=d=>{const x=new Date(d);x.setHours(0,0,0,0);x.setDate(x.getDate()-((x.getDay()+6)%7));return x.getTime()};
+  const dm=d=>new Date(d).toLocaleDateString("pt-BR",{day:"2-digit",month:"2-digit"});
+  const grupos=new Map(); ag.forEach(it=>{const k=seg(Date.parse(it.data));if(!grupos.has(k))grupos.set(k,[]);grupos.get(k).push(it)});
+  $("semLista").innerHTML=[...grupos].map(([k,its])=>`<div class="sem"><span class="lab">Semana de ${dm(k)} a ${dm(k+6*864e5)}</span>${its.map(it=>{
+    const t=Date.parse(it.data), d=new Date(t), r=it.roteiro?D.roteiros.find(x=>x.n===it.roteiro):null;
+    const hoje=new Date(agora).toDateString()===d.toDateString();
+    let cls,txt;
+    if(r){const s=stR(r);
+      if(s==="postado"){cls="postado";txt="Postado"}
+      else if(mv("erro-"+it.id)){cls="depende";txt="O robô falhou"}
+      else if(mv("arq-"+it.id)){cls="gravado";txt="Vídeo na pasta"}
+      else if(s==="gravado"){cls="gravado";txt=R.ligado?"Gravado: falta subir na pasta":"Gravado"}
+      else if(t<agora){cls="depende";txt="Atrasado"}
+      else if(s==="depende"){cls="depende";txt="Depende de você"}
+      else{cls="pronto";txt="Falta gravar"}}
+    else{
+      if(mv("pub-"+it.id)==="postado"){cls="postado";txt="Postado"}
+      else if(mv("erro-"+it.id)){cls="depende";txt="O robô falhou"}
+      else if(it.aprovado!==true){cls="depende";txt="Falta confirmar os fatos"}
+      else{cls="pronto";txt="Aprovado"}}
+    return `<div class="card ag${hoje?" hoje":""}"><div class="dia"><b>${d.toLocaleDateString("pt-BR",{weekday:"short"}).replace(".","").toUpperCase()}</b><span>${dm(t)}</span><span>${d.toLocaleTimeString("pt-BR",{hour:"2-digit",minute:"2-digit"})}</span></div>
+      <div class="agc">${r?`<a class="tit" href="#r${r.n}">${esc(r.titulo)}</a>`:`<span class="tit" style="font-family:var(--display);font-weight:800;font-size:17px;line-height:1.2">${esc(it.titulo)}</span>`}
+      <div class="tags"><span class="pill ${cls}">${txt}</span><span>${r?`Reel · roteiro <span class="mono">${String(r.n).padStart(2,"0")}</span>`:`Carrossel · <span class="mono">${it.slides}</span> slides`}</span></div>
+      ${mv("erro-"+it.id)?`<div><button class="btn mini" data-limpa="erro-${it.id}">Tentar de novo</button></div>`:""}
+      ${r?`<div class="marcar"><button class="btn mini" data-passo="tt-${it.id}" aria-pressed="${!!mv("tt-"+it.id)}">TikTok</button><button class="btn mini" data-passo="yt-${it.id}" aria-pressed="${!!mv("yt-"+it.id)}">YouTube</button></div>`:""}
+      </div></div>`}).join("")}</div>`).join("");
+}
+
 function perguntas(){
   const ab=D.perguntas.filter(q=>q.s!=="respondida");
   $("pergLista").innerHTML=ab.map(q=>`<div class="card perg"><p class="q">${esc(q.p)}</p>
@@ -283,7 +336,9 @@ function envio(){
   $("envioBtn").href=wa(t);
 }
 
-function tudo(){topo();agora();roteiros();perguntas();caminho();envio()}
+function tudo(){topo();agora();semana();roteiros();perguntas();caminho();envio()}
+/* link interno para um roteiro (ex.: vindo da Semana) abre o cartão */
+addEventListener("hashchange",()=>{const h=/^#r(\d+)$/.exec(location.hash);if(h){abertos.add(+h[1]);const d=$("r"+h[1]);if(d){d.open=true;d.scrollIntoView()}}});
 
 /* ---- sincronização (Firebase Realtime Database via REST + EventSource) ---- */
 function marca(k,v){
@@ -333,8 +388,9 @@ function quem(cb){ if(QUEM||!SYNC||!$("quem").showModal)return cb(); depois=cb; 
 document.addEventListener("click",e=>{
   const q=e.target.closest("[data-quem]");
   if(q){QUEM=q.dataset.quem; try{localStorage.setItem("central-quem",QUEM)}catch(x){} $("quem").close(); if(depois){const f=depois;depois=null;f()} return}
-  const b=e.target.closest("[data-rot],[data-passo],[data-copia]"); if(!b)return;
-  if(b.dataset.rot){const k="r"+b.dataset.rot,v=b.dataset.v,r=D.roteiros.find(x=>x.n==b.dataset.rot),s=stR(r);
+  const b=e.target.closest("[data-rot],[data-passo],[data-copia],[data-limpa]"); if(!b)return;
+  if(b.dataset.limpa){quem(()=>marca(b.dataset.limpa,null))}
+  else if(b.dataset.rot){const k="r"+b.dataset.rot,v=b.dataset.v,r=D.roteiros.find(x=>x.n==b.dataset.rot),s=stR(r);
     const nv=v==="postado"?(s==="postado"?"gravado":"postado"):(RANK[s]>=1?null:"gravado");
     quem(()=>marca(k,nv));}
   else if(b.dataset.passo){const k=b.dataset.passo; quem(()=>marca(k,mv(k)?null:true));}

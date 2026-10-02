@@ -1,0 +1,35 @@
+name: Robô de postagem
+
+on:
+  schedule:
+    - cron: "*/15 * * * *"
+  workflow_dispatch:
+    inputs:
+      teste:
+        description: "Só mostrar o que postaria, sem postar"
+        type: boolean
+        default: true
+
+concurrency:
+  group: robo-postagem
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  postar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Postar o que estiver na hora
+        run: node robo/postar.mjs
+        env:
+          META_TOKEN: ${{ secrets.META_TOKEN }}
+          IG_USER_ID: ${{ secrets.IG_USER_ID }}
+          DRIVE_KEY: ${{ secrets.DRIVE_KEY }}
+          DRY_RUN: ${{ github.event_name == 'workflow_dispatch' && inputs.teste && '1' || '' }}

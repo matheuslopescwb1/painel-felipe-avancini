@@ -2,6 +2,28 @@ window.DADOS = {
   "atualizado": "2 de outubro de 2026",
   "sync": "https://central-felipe-default-rtdb.europe-west1.firebasedatabase.app",
   "hashtagsBase": "#morarfora #brasileirosnaeuropa #imigração #sairdobrasil #realidadedemorarfora",
+  "robo": {
+    "ligado": false,
+    "pastaId": "",
+    "site": "https://matheuslopescwb1.github.io/painel-felipe-avancini"
+  },
+  "agenda": [
+    { "id": "a1", "tipo": "reel", "roteiro": 1, "data": "2026-10-05T12:00:00-03:00" },
+    { "id": "a2", "tipo": "reel", "roteiro": 2, "data": "2026-10-06T12:00:00-03:00" },
+    { "id": "a3", "tipo": "reel", "roteiro": 3, "data": "2026-10-07T12:00:00-03:00" },
+    { "id": "a4", "tipo": "reel", "roteiro": 4, "data": "2026-10-08T12:00:00-03:00" },
+    { "id": "a5", "tipo": "reel", "roteiro": 5, "data": "2026-10-09T12:00:00-03:00" },
+    { "id": "a6", "tipo": "reel", "roteiro": 6, "data": "2026-10-10T12:00:00-03:00" },
+    { "id": "a7", "tipo": "reel", "roteiro": 7, "data": "2026-10-11T12:00:00-03:00" },
+    { "id": "a8", "tipo": "reel", "roteiro": 8, "data": "2026-10-12T12:00:00-03:00" },
+    { "id": "a9", "tipo": "reel", "roteiro": 9, "data": "2026-10-13T12:00:00-03:00" },
+    { "id": "a10", "tipo": "reel", "roteiro": 10, "data": "2026-10-14T12:00:00-03:00" },
+    { "id": "a11", "tipo": "reel", "roteiro": 11, "data": "2026-10-15T12:00:00-03:00" },
+    { "id": "c1", "tipo": "carrossel", "titulo": "Carrossel: Dormi 4 meses na sala de uma igreja", "data": "2026-10-16T12:00:00-03:00", "aprovado": false, "pasta": "carrosseis/4-meses-igreja", "slides": 7,
+      "legenda": "Dormi 4 meses na sala de uma igreja em Torino.\n\nEu e meus pais chegamos com uma promessa de casa e trabalho. A promessa não se cumpriu. O banho era na pia, no inverno em que mais nevou na região.\n\nArrasta pro lado que eu conto o que aprendi com isso.\n\nNunca passei perrengue no Brasil, fui passar perrengue fora do Brasil. E é por isso que eu falo: não saia contando só com a palavra de alguém.\n\nSegue aqui pra ver a realidade de morar fora, sem filtro.\n\n#morarfora #brasileirosnaitalia #brasileirosnaeuropa #vidanaitalia #imigração #torino #perrengue #morarnaitalia #sairdobrasil #realidadedemorarfora" },
+    { "id": "c2", "tipo": "carrossel", "titulo": "Carrossel: No Brasil eu era gerente. Na Itália fui lavar carro", "data": "2026-10-17T12:00:00-03:00", "aprovado": false, "pasta": "carrosseis/gerente-lavar-carro", "slides": 7,
+      "legenda": "No Brasil eu era gerente. Na Itália fui lavar carro.\n\nMuita gente acha que morar fora é chegar e continuar de onde parou. Comigo não foi. Fiz mudança, cortei grama, trabalhei em reforma e pintura, e depois fui lavar carro na Land Rover, ganhando de 1.100 a 1.450 euros por mês.\n\nArrasta pro lado que eu conto a ordem em que foi.\n\nHoje estou na Suíça, trabalhando em obra. Segue aqui que eu mostro quanto isso paga, sem enfeite.\n\nVocê toparia recomeçar de baixo pra morar fora? Me conta nos comentários.\n\n#morarfora #brasileirosnaitalia #brasileirosnaeuropa #vidanaitalia #imigração #trabalhonaeuropa #brasileirosnasuica #morarnaitalia #sairdobrasil #realidadedemorarfora" }
+  ],
   "regras": [
     "A primeira frase é o número ou a cena. Sem \"oi\" e sem ler o título que já está na tela.",
     "30 a 45 segundos. Passou disso, vira parte 2.",
@@ -40,7 +62,8 @@ window.DADOS = {
         { "id": "p-roteiros", "t": "11 roteiros escritos", "quem": "Matheus", "s": "feito" },
         { "id": "p-bloco1", "t": "Gravar o bloco 1: roteiros 1, 2, 3 e 4", "d": "Estão prontos. É só preencher os trechos em amarelo com o que você viveu.", "quem": "Felipe", "s": "falta", "ir": "#roteiros" },
         { "id": "p-perguntas", "t": "Responder as perguntas desta página", "d": "São elas que liberam os roteiros 5, 6 e 9.", "quem": "Felipe", "s": "falta", "ir": "#perguntas" },
-        { "id": "p-postar", "t": "Postar 1 vídeo por dia, na ordem", "d": "Começa pelo colchão no chão, que é o que está acontecendo agora.", "quem": "Felipe", "s": "falta", "ir": "#roteiros" },
+        { "id": "p-postar", "t": "Postar 1 vídeo por dia, seguindo a Semana", "d": "Começa pelo colchão no chão, na segunda, 5 de outubro. Enquanto o robô do Instagram não estiver ligado, posta pelo aplicativo e marca Postei.", "quem": "Felipe", "s": "falta", "ir": "#semana" },
+        { "id": "p-robo", "t": "Ligar o robô que posta no Instagram", "d": "Faltam as chaves da Meta e do Google e a pasta dos vídeos.", "quem": "Matheus", "s": "falta" },
         { "id": "p-bloco2", "t": "Gravar o bloco 2: roteiros 5 a 11", "d": "Depois de responder as perguntas.", "quem": "Felipe", "s": "falta", "ir": "#roteiros" },
         { "id": "p-prints", "t": "Mandar os prints de país e gênero do público", "d": "No Instagram: aba Pubblico, botões Paese e Genere.", "quem": "Felipe", "s": "falta" },
         { "id": "p-carrosseis", "t": "Confirmar os fatos dos 3 carrosséis prontos", "quem": "Felipe", "s": "falta" },

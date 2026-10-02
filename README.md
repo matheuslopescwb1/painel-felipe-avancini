@@ -10,6 +10,12 @@ Página: https://matheuslopescwb1.github.io/painel-felipe-avancini/
 - `dados.js` — fonte única: fases, passos, perguntas e roteiros. Para atualizar a página, é aqui que se mexe.
 - `numeros.html` — leitura dos 16 reels de setembro de 2026.
 
+- `robo/` — robô que posta no Instagram na hora da agenda (`postar.mjs`), roda pelo GitHub Actions (`.github/workflows/robo.yml`). Como ligar: `robo/CONFIGURAR.md`.
+
+## Agenda
+
+Em `dados.js`, a lista `agenda` define dia e hora de cada post (com fuso, ex.: `2026-10-05T12:00:00-03:00`). A aba "Semana" da Central mostra essa lista. O robô só posta quando `robo.ligado` é `true`.
+
 ## Como atualizar
 
 Em `dados.js`:
