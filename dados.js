@@ -1,6 +1,6 @@
 window.DADOS = {
   "atualizado": "2 de outubro de 2026",
-  "sync": "",
+  "sync": "https://central-felipe-default-rtdb.europe-west1.firebasedatabase.app",
   "hashtagsBase": "#morarfora #brasileirosnaeuropa #imigração #sairdobrasil #realidadedemorarfora",
   "regras": [
     "A primeira frase é o número ou a cena. Sem \"oi\" e sem ler o título que já está na tela.",
