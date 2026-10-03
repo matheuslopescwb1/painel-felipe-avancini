@@ -1,12 +1,13 @@
-# Central do Felipe
+# Felipe Avancini · Agente Mayal
 
-Página que o Felipe e o Matheus usam para acompanhar a estratégia e o conteúdo do @heynego: o que já foi feito, o que gravar agora e o que falta.
+Espaço do Felipe no Agente Mayal, o sistema da Mayal Hub (antes se chamava Central). Página que o Felipe e o Matheus usam para acompanhar a estratégia e o conteúdo do @heynego: o que já foi feito, o que gravar agora e o que falta.
 
 Página: https://matheuslopescwb1.github.io/painel-felipe-avancini/
 
 ## Arquivos
 
-- `index.html` — a central (o que fazer agora, roteiros, perguntas, caminho).
+- `index.html` — o espaço do Felipe (o que fazer agora, roteiros, perguntas, caminho).
+- `agente-mayal.css`, `fonts/`, `agente.png`, `icone-*.png` — a identidade do Agente Mayal, os mesmos arquivos do sistema (`central-sistema/public/assets`).
 - `dados.js` — fonte única: fases, passos, perguntas e roteiros. Para atualizar a página, é aqui que se mexe.
 - `numeros.html` — leitura dos 16 reels de setembro de 2026.
 

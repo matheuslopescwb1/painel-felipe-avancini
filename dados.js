@@ -28,7 +28,7 @@ window.DADOS = {
     "A primeira frase é o número ou a cena. Sem \"oi\" e sem ler o título que já está na tela.",
     "30 a 45 segundos. Passou disso, vira parte 2.",
     "Sempre em pé (vertical).",
-    "Só o que você viveu, com o número real. Onde o roteiro está marcado em amarelo, é você que preenche.",
+    "Só o que você viveu, com o número real. Onde o roteiro está marcado em lilás, é você que preenche.",
     "Um pedido só no final: o que está escrito no roteiro.",
     "Sempre que der, grava no lugar e com a coisa na mão.",
     "Um vídeo por dia, na ordem. Grava em blocos pra não depender do ânimo do dia."
@@ -60,7 +60,7 @@ window.DADOS = {
       "resumo": "Menos comparação Brasil x Itália, mais história contada a fundo e bastidor de quem ganha com conteúdo morando fora. No fim desta fase a gente sabe quantas pessoas querem criar.",
       "passos": [
         { "id": "p-roteiros", "t": "11 roteiros escritos", "quem": "Matheus", "s": "feito" },
-        { "id": "p-bloco1", "t": "Gravar o bloco 1: roteiros 1, 2, 3 e 4", "d": "Estão prontos. É só preencher os trechos em amarelo com o que você viveu.", "quem": "Felipe", "s": "falta", "ir": "#roteiros" },
+        { "id": "p-bloco1", "t": "Gravar o bloco 1: roteiros 1, 2, 3 e 4", "d": "Estão prontos. É só preencher os trechos marcados com o que você viveu.", "quem": "Felipe", "s": "falta", "ir": "#roteiros" },
         { "id": "p-perguntas", "t": "Responder as perguntas desta página", "d": "São elas que liberam os roteiros 5, 6 e 9.", "quem": "Felipe", "s": "falta", "ir": "#perguntas" },
         { "id": "p-postar", "t": "Postar 1 vídeo por dia, seguindo a Semana", "d": "Começa pelo colchão no chão, na segunda, 5 de outubro. Enquanto o robô do Instagram não estiver ligado, posta pelo aplicativo e marca Postei.", "quem": "Felipe", "s": "falta", "ir": "#semana" },
         { "id": "p-robo", "t": "Ligar o robô que posta no Instagram", "d": "Faltam as chaves da Meta e do Google e a pasta dos vídeos.", "quem": "Matheus", "s": "falta" },

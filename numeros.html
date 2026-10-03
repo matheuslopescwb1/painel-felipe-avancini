@@ -8,13 +8,10 @@
 <meta property="og:type" content="website">
 <meta property="og:title" content="Painel Felipe Avancini">
 <meta property="og:description" content="Leitura dos 16 reels de setembro do @heynego e o plano para levar o público à comunidade e ao curso.">
-<meta name="theme-color" content="#0f4c5c">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230f4c5c'/%3E%3Cpath d='M8 23V14h4v9zm6 0V9h4v14zm6 0v-6h4v6z' fill='%23fff'/%3E%3C/svg%3E">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<meta name="theme-color" content="#07041A">
+<link rel="icon" type="image/png" href="icone-64.png">
 <style>html{-webkit-text-size-adjust:100%}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
-<title>Números de setembro</title>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@75..100,500..800&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<title>Números de setembro · Agente Mayal</title>
 <style>
 /* Layout: painel de leitura em coluna única, resumo antes do detalhe; duas metades: o que já foi postado / o que vamos fazer */
 :root{
@@ -107,36 +104,40 @@ details summary:focus-visible,input:focus-visible{outline:2px solid var(--accent
 .result b{font-family:var(--display);font-size:30px;display:block;line-height:1.1}
 .pill{display:inline-block;font-size:12px;font-weight:600;padding:2px 8px;border-radius:99px;border:1px solid var(--axis);color:var(--ink2)}
 </style>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Doto:wght@800;900&family=Urbanist:wght@300;400;500;600;700&display=swap">
 <meta name="color-scheme" content="dark">
 <style>
-/* Mesma linguagem visual da Central: fundo quase preto, uma cor por significado, números em matriz de pontos. */
+/* Identidade da Mayal Hub, a mesma do Agente Mayal: Vácuo, Abismo, luz violeta, Geist e Geist Mono.
+   As três séries dos gráficos ficam na família violeta: pulsar, orquídea e estelar. */
+@font-face{font-family:"Geist";src:url(fonts/geist.woff2) format("woff2");font-weight:100 900;font-style:normal;font-display:swap}
+@font-face{font-family:"Geist Mono";src:url(fonts/geist-mono.woff2) format("woff2");font-weight:100 900;font-style:normal;font-display:swap}
 html:root:root{
-  --page:#090B0F; --surface:#0E1116; --ink:#F2F6FA; --ink2:#9AA6B2; --muted:#66727E;
-  --grid:rgba(221,232,242,.10); --axis:rgba(221,232,242,.22); --line:rgba(221,232,242,.10);
-  --s1:#25E3FF; --s2:#FFB020; --s3:#FF3355; --track:rgba(221,232,242,.08);
-  --accent:#25E3FF; --accent-ink:#03161B; --warn-bg:rgba(255,176,32,.12); --warn-ink:#FFB020;
-  --display:"Urbanist",system-ui,sans-serif; --body:"Urbanist",system-ui,sans-serif; color-scheme:dark}
-body{background:radial-gradient(70% 38% at 85% 0%,rgba(37,227,255,.11),transparent 70%),radial-gradient(60% 30% at 0% 22%,rgba(255,176,32,.07),transparent 70%),#090B0F;background-attachment:fixed;font-size:16px}
-h1{font-weight:300;font-stretch:normal;letter-spacing:-.02em}
-h2,h3{font-weight:500;font-stretch:normal}
-.eyebrow{font-family:"Doto",monospace;font-weight:800;letter-spacing:.14em}
-.card,.tile{border-radius:22px}
-.tile b,.step b,.result b,.calc output{font-family:"Doto",monospace;font-weight:900;color:#25E3FF;text-shadow:0 0 16px rgba(37,227,255,.5)}
-.step{border-radius:16px;background:rgba(221,232,242,.03)}
+  --page:#07041A; --surface:#100B30; --ink:#F3F1FF; --ink2:#9C97C8; --muted:#6F6A9E;
+  --grid:rgba(185,177,247,.12); --axis:rgba(185,177,247,.3); --line:rgba(185,177,247,.14);
+  --s1:#8F80FF; --s2:#D48CF7; --s3:#E4E0FF; --track:rgba(185,177,247,.1);
+  --accent:#7462F0; --accent-ink:#F3F1FF; --warn-bg:rgba(212,140,247,.12); --warn-ink:#D48CF7;
+  --display:"Geist",system-ui,-apple-system,"Segoe UI",sans-serif; --body:"Geist",system-ui,-apple-system,"Segoe UI",sans-serif; color-scheme:dark}
+body{background:radial-gradient(60% 40% at 90% -6%,rgba(116,98,240,.24),transparent 70%),radial-gradient(55% 32% at -6% 24%,rgba(46,26,158,.28),transparent 70%),#07041A;background-attachment:fixed;font-size:16px;line-height:1.6}
+h1{font-weight:600;font-stretch:normal;letter-spacing:-.03em;line-height:1.04}
+h2,h3{font-weight:600;font-stretch:normal;letter-spacing:-.02em}
+.eyebrow{font-family:"Geist Mono",ui-monospace,monospace;font-weight:500;letter-spacing:.14em;color:#B9B1F7}
+.card,.tile{border-radius:20px}
+.tile b,.step b,.result b,.calc output{font-family:"Geist Mono",ui-monospace,monospace;font-weight:500;letter-spacing:-.02em;color:#B9B1F7;text-shadow:0 0 16px rgba(116,98,240,.45)}
+.v{font-family:"Geist Mono",ui-monospace,monospace}
+.tile b{font-size:clamp(22px,6vw,30px);white-space:nowrap}
+.step{border-radius:16px;background:rgba(185,177,247,.04)}
 .part{border-top:1px solid var(--line)}
-.bar{box-shadow:0 0 14px -4px currentColor}
-.stage.final{box-shadow:0 0 26px -8px rgba(37,227,255,.7)}
-#tip{background:#F2F6FA;color:#090B0F;border-radius:10px}
+.bar{box-shadow:0 0 14px -6px rgba(116,98,240,.8)}
+.stage.final{box-shadow:0 0 26px -8px rgba(116,98,240,.8)}
+#tip{background:#F3F1FF;color:#07041A;border-radius:10px}
 .volta{display:inline-flex;align-items:center;gap:10px;font-weight:600;letter-spacing:.06em;font-size:15px;color:var(--ink);text-decoration:none;margin-bottom:10px}
-.volta svg{width:26px;height:26px;filter:drop-shadow(0 0 8px rgba(37,227,255,.55))}
-.volta small{color:var(--accent);font-weight:500;letter-spacing:0;margin-left:6px}
+.volta svg{width:26px;height:26px;filter:drop-shadow(0 0 8px rgba(116,98,240,.55))}
+.volta small{color:#B9B1F7;font-weight:500;letter-spacing:0;margin-left:6px}
 </style>
 </head>
 <body>
 <div class="wrap">
 <header>
-  <a class="volta" href="./"><svg viewBox="0 0 48 48" aria-hidden="true"><path d="M5 40 17.5 8H40l-2.8 7.2H23.4l-2.3 6h11.4l-2.8 7.2H18.3L13.7 40z" fill="#25E3FF"/><path d="M28.6 40 36.4 19.6 40.4 40h-5.2l-.7-4.2-1.6 4.2z" fill="#F2F6FA"/></svg>FELIPE AVANCINI <small>← Voltar para a Central</small></a>
+  <a class="volta" href="./"><svg viewBox="0 0 48 48" aria-hidden="true"><path d="M5 40 17.5 8H40l-2.8 7.2H23.4l-2.3 6h11.4l-2.8 7.2H18.3L13.7 40z" fill="#25E3FF"/><path d="M28.6 40 36.4 19.6 40.4 40h-5.2l-.7-4.2-1.6 4.2z" fill="#F2F6FA"/></svg>FELIPE AVANCINI <small>← Voltar para o espaço</small></a>
   <span class="eyebrow">@heynego · leitura de 1 de outubro de 2026</span>
   <h1>Números de setembro</h1>
   <p class="sub">O que os 16 reels do aquecimento mostraram. Foram os primeiros vídeos depois de meses parado, então estes números são o ponto de partida da retomada.</p>
